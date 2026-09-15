@@ -9,9 +9,10 @@
 <meta property="og:description" content="Studiyasiz, kamerasiz, bir kunda. 15 ta amaliy dars + 3 ta bonus.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
+<link rel="preconnect" href="https://video.gumlet.io">
 
 <!-- ═══════════════════════════════════════════════════════════
-     META PIXEL — PIXEL_ID ni o'zingiznikiga almashtiring
+     META PIXEL
      ═══════════════════════════════════════════════════════════ -->
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -19,11 +20,11 @@ n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
 n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
 document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init','PIXEL_ID');
+fbq('init','2151163585812110');
 fbq('track','PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=PIXEL_ID&ev=PageView&noscript=1"/></noscript>
+src="https://www.facebook.com/tr?id=2151163585812110&ev=PageView&noscript=1"/></noscript>
 
 <style>
 /* ═══════════ TOKENS ═══════════ */
@@ -117,9 +118,11 @@ h3{font-size:clamp(19px,3vw,24px);letter-spacing:-.015em;line-height:1.2}
 /* ═══════════ PROOF STRIP ═══════════ */
 .proof{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);
   border:1px solid var(--line);border-radius:var(--rl);overflow:hidden;margin-top:clamp(28px,4vw,40px)}
-.proof div{background:var(--blk2);padding:18px 10px;text-align:center}
-.proof .v{font-size:clamp(19px,3.6vw,29px);font-weight:900;letter-spacing:-.03em;color:var(--yel)}
-.proof .l{font-size:11.5px;color:var(--gry2);margin-top:3px;line-height:1.25}
+.proof>div{background:var(--blk2);padding:clamp(18px,3vw,28px) 10px;text-align:center}
+.proof .v{font-size:clamp(32px,5.4vw,48px);font-weight:900;letter-spacing:-.03em;color:var(--yel);line-height:1.1;
+  height:1.1em;display:flex;align-items:center;justify-content:center}
+.proof .inf{font-size:1.5em;line-height:1}
+.proof .l{font-size:clamp(12px,1.6vw,14px);color:var(--gry2);margin-top:6px;line-height:1.25}
 
 /* ═══════════ CARDS / GRID ═══════════ */
 .g{display:grid;gap:14px}
@@ -138,8 +141,88 @@ h3{font-size:clamp(19px,3vw,24px);letter-spacing:-.015em;line-height:1.2}
 .ph .ic{font-size:26px;opacity:.5}
 .ph.wide{aspect-ratio:16/9}
 .ph.sq{aspect-ratio:1}
-.workCap{margin-top:9px;font-size:13px;color:var(--gry2);display:flex;justify-content:space-between;gap:8px}
-.sec.lite .workCap{color:#7A7A82}
+
+/* ═══════════ WORKS CAROUSEL ═══════════ */
+/* Swipe is the browser's own overflow scroll with snap; arrows page by one card.
+   Wide and tall cards share one track, each sized for its own format. */
+.carousel{position:relative}
+.slides{display:flex;align-items:center;gap:clamp(10px,1.6vw,18px);
+  padding:6px max(20px,calc((100% - var(--max))/2 + 20px));
+  overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;
+  overscroll-behavior-x:contain;cursor:grab}
+.slides::-webkit-scrollbar{display:none}
+.slides.is-dragging{cursor:grabbing;scroll-snap-type:none;-webkit-user-select:none;user-select:none}
+.slide{flex:none;scroll-snap-align:center;transform:scale(.88);opacity:.5;
+  transition:transform .28s ease,opacity .28s ease}
+.slide.is-active{transform:none;opacity:1}
+.slide_inner{position:relative;overflow:hidden;aspect-ratio:var(--ar);
+  border-radius:18px;background:var(--blk3);border:1px solid var(--line)}
+.carousel--work .slide--wide .slide_inner{width:min(640px,84vw)}
+.carousel--work .slide--tall .slide_inner{width:min(290px,56vw)}
+.slide_video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.slide_play{position:absolute;left:50%;top:50%;z-index:2;transform:translate(-50%,-50%);
+  width:clamp(52px,6vw,68px);aspect-ratio:1;border:1px solid rgba(255,255,255,.85);border-radius:50%;
+  background:rgba(10,10,12,.35);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  display:flex;align-items:center;justify-content:center;cursor:pointer}
+.slide_play[hidden]{display:none}
+.slide_play svg{width:40%;height:40%;fill:#fff;margin-left:6%}
+.slides_nav{position:absolute;top:50%;z-index:3;width:48px;height:48px;transform:translateY(-50%);
+  border:none;border-radius:50%;background:var(--yel);color:var(--blk);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;box-shadow:0 8px 22px rgba(0,0,0,.45)}
+.slides_nav:disabled{opacity:.3;cursor:default}
+.slides_nav svg{width:11px;height:19px;fill:none;stroke:currentColor;stroke-width:3;
+  stroke-linecap:round;stroke-linejoin:round}
+.slides_nav--prev{left:max(12px,calc((100% - var(--max))/2 - 4px))}
+.slides_nav--next{right:max(12px,calc((100% - var(--max))/2 - 4px))}
+.carousel_shade{position:absolute;top:0;bottom:0;z-index:1;width:clamp(20px,9vw,140px);pointer-events:none}
+.carousel_shade--l{left:0;background:linear-gradient(90deg,var(--blk),transparent)}
+.carousel_shade--r{right:0;background:linear-gradient(-90deg,var(--blk),transparent)}
+@media(prefers-reduced-motion:reduce){.slide{transition:none}}
+
+/* reviews: screenshots keep their own proportions; tap opens them full size */
+.sec.lite .carousel_shade--l{background:linear-gradient(90deg,var(--off),transparent)}
+.sec.lite .carousel_shade--r{background:linear-gradient(-90deg,var(--off),transparent)}
+.sec.lite .slide_inner{background:#fff;border-color:#E4E4E0;box-shadow:0 6px 24px rgba(0,0,0,.08)}
+/* a long chat would make the whole row as tall as the screen: cap the height, narrow the card */
+.carousel--rev .slide--tall .slide_inner{width:min(320px,76vw,calc(var(--ar) * 460px))}
+.carousel--rev .slide--wide .slide_inner{width:min(560px,84vw)}
+.rev_open{display:block;width:100%;height:100%;padding:0;border:none;background:none;cursor:zoom-in}
+.rev_open img{width:100%;height:100%;object-fit:cover}
+.rev_hint{margin-top:14px;text-align:center;font-size:13.5px;color:#7A7A82}
+
+/* ═══════════ LIGHTBOX ═══════════ */
+.lb{position:fixed;inset:0;z-index:110;display:none;overflow-y:auto;overscroll-behavior:contain;
+  background:rgba(6,6,8,.94);padding:calc(60px + env(safe-area-inset-top)) 12px calc(24px + env(safe-area-inset-bottom))}
+.lb.on{display:flex}
+/* margin:auto centres a short image and still lets a tall one scroll from its top */
+.lb img{margin:auto;width:100%;max-width:720px;height:auto;border-radius:14px}
+.lb_x{position:fixed;top:calc(12px + env(safe-area-inset-top));right:12px;width:42px;height:42px;
+  border:none;border-radius:50%;background:rgba(255,255,255,.16);color:#fff;font-size:26px;line-height:1;cursor:pointer}
+
+/* ═══════════ VSL ═══════════ */
+.vsl{position:relative;max-width:860px;margin:0 auto;aspect-ratio:16/9;overflow:hidden;
+  border-radius:22px;background:#000;border:1px solid var(--line);box-shadow:0 30px 80px rgba(0,0,0,.55)}
+.vsl_video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.vsl::after{content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(closest-side,rgba(0,0,0,.05),rgba(0,0,0,.45));transition:opacity .3s}
+.vsl.is-started::after{opacity:0}
+.vsl_play{position:absolute;left:50%;top:50%;z-index:2;transform:translate(-50%,-50%);
+  width:clamp(84px,15vw,132px);aspect-ratio:1;border:none;border-radius:50%;cursor:pointer;
+  background:linear-gradient(135deg,var(--yel),#FFB300);color:#12100A;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 14px 44px rgba(255,199,44,.45);transition:transform .2s ease}
+.vsl_play:hover{transform:translate(-50%,-50%) scale(1.07)}
+.vsl_play[hidden]{display:none}
+.vsl_play svg{position:relative;width:38%;height:38%;fill:currentColor;margin-left:8%}
+/* two rings ripple out of the button, half a beat apart */
+.vsl_play::before,.vsl_play::after{content:'';position:absolute;inset:0;border-radius:50%;
+  border:3px solid var(--yel);pointer-events:none;animation:vslRing 2.4s cubic-bezier(.2,.6,.35,1) infinite}
+.vsl_play::after{animation-delay:1.2s}
+@keyframes vslRing{from{transform:scale(1);opacity:.8}to{transform:scale(1.85);opacity:0}}
+.vsl_len{position:absolute;left:14px;bottom:14px;z-index:2;padding:5px 11px;border-radius:999px;
+  background:rgba(0,0,0,.6);font-size:13px;font-weight:700;letter-spacing:.02em;font-variant-numeric:tabular-nums}
+.vsl.is-started .vsl_len{display:none}
+@media(prefers-reduced-motion:reduce){.vsl_play::before,.vsl_play::after{animation:none;opacity:0}}
 
 /* ═══════════ AUDIENCE ═══════════ */
 .aud{display:flex;gap:14px;align-items:flex-start}
@@ -266,7 +349,12 @@ h3{font-size:clamp(19px,3vw,24px);letter-spacing:-.015em;line-height:1.2}
 @media(max-width:640px){
   body{font-size:16px}
   .g2,.g3{grid-template-columns:1fr}
-  .g.works{grid-template-columns:repeat(2,1fr)}
+  /* arrows drop below the track, where they don't sit on top of a playing video */
+  .carousel{padding-bottom:56px}
+  .slides_nav{top:auto;bottom:0;transform:none;width:44px;height:44px}
+  .slides_nav--prev{left:calc(50% - 54px)}
+  .slides_nav--next{right:calc(50% - 54px)}
+  .carousel--work .slide--tall .slide_inner{width:50vw}
   .proof{grid-template-columns:repeat(2,1fr)}
   .steps{gap:7px}
   .stp{padding:13px 7px}
@@ -337,7 +425,7 @@ h3{font-size:clamp(19px,3vw,24px);letter-spacing:-.015em;line-height:1.2}
       <div><div class="v">1 500+</div><div class="l">O'quvchi</div></div>
       <div><div class="v">15</div><div class="l">Amaliy dars</div></div>
       <div><div class="v">3</div><div class="l">Bonus</div></div>
-      <div><div class="v">∞</div><div class="l">Umrbod kirish</div></div>
+      <div><div class="v"><span class="inf">∞</span></div><div class="l">Umrbod kirish</div></div>
     </div>
   </div>
 </header>
@@ -352,24 +440,192 @@ h3{font-size:clamp(19px,3vw,24px);letter-spacing:-.015em;line-height:1.2}
       <p class="lead">Bularning hammasi kursdan keyin — kamerasiz, studiyasiz</p>
     </div>
 
-    <div class="g g3 works">
-      <!-- ⬇⬇ 1-ISH: videoni shu yerga qo'ying ⬇⬇
-           <video src="/works/1.mp4" autoplay muted loop playsinline
-                  style="aspect-ratio:9/16;border-radius:14px;object-fit:cover"></video> -->
-      <div>
-        <div class="ph"><div class="ic">▶</div>O'quvchi videosi 1<br>(9:16 · autoplay · muted · loop)</div>
-        <div class="workCap"><span>Chaqaloq reklama roligi</span><span>~40 daq</span></div>
+  </div>
+
+  <!-- Avval YouTube formatdagi (16:9) ishlar, keyin reels (9:16). Yangi video qo'shish:
+       Gumlet ID ni data-id ga, eni/bo'yi nisbatini --ar ga yozing. -->
+  <div class="carousel carousel--work">
+    <div class="carousel_shade carousel_shade--l" aria-hidden="true"></div>
+    <div class="carousel_shade carousel_shade--r" aria-hidden="true"></div>
+    <button class="slides_nav slides_nav--prev" type="button" aria-label="Oldingi ish">
+      <svg viewBox="0 0 14 25" aria-hidden="true"><path d="M11 2 3 12.5 11 23"/></svg>
+    </button>
+    <div class="slides">
+      <div class="slide slide--wide" style="--ar:1.791">
+        <div class="slide_inner">
+          <video class="slide_video" data-id="6aa95386ba91b6658beb893f" playsinline webkit-playsinline preload="none"></video>
+          <button class="slide_play" type="button" aria-label="1-ishni ijro etish">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 5.5v13l11-6.5z"/></svg>
+          </button>
+        </div>
       </div>
-      <div>
-        <div class="ph"><div class="ic">▶</div>O'quvchi videosi 2</div>
-        <div class="workCap"><span>Mahsulot reklamasi</span><span>~30 daq</span></div>
+      <div class="slide slide--wide" style="--ar:1.7778">
+        <div class="slide_inner">
+          <video class="slide_video" data-id="6aa953bc97a280a4b4432082" playsinline webkit-playsinline preload="none"></video>
+          <button class="slide_play" type="button" aria-label="2-ishni ijro etish">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 5.5v13l11-6.5z"/></svg>
+          </button>
+        </div>
       </div>
-      <div>
-        <div class="ph"><div class="ic">▶</div>O'quvchi videosi 3</div>
-        <div class="workCap"><span>AI avatar</span><span>~20 daq</span></div>
+      <div class="slide slide--wide" style="--ar:1.7778">
+        <div class="slide_inner">
+          <video class="slide_video" data-id="6aa953bcc1d3ddef93b4f8e7" playsinline webkit-playsinline preload="none"></video>
+          <button class="slide_play" type="button" aria-label="3-ishni ijro etish">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 5.5v13l11-6.5z"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="slide slide--wide" style="--ar:1.7778">
+        <div class="slide_inner">
+          <video class="slide_video" data-id="6aa953bc97a280a4b4432081" playsinline webkit-playsinline preload="none"></video>
+          <button class="slide_play" type="button" aria-label="4-ishni ijro etish">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 5.5v13l11-6.5z"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="slide slide--wide" style="--ar:1.7778">
+        <div class="slide_inner">
+          <video class="slide_video" data-id="6aa9556a97a280a4b4432b21" playsinline webkit-playsinline preload="none"></video>
+          <button class="slide_play" type="button" aria-label="5-ishni ijro etish">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 5.5v13l11-6.5z"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="slide slide--wide" style="--ar:1.7778">
+        <div class="slide_inner">
+          <video class="slide_video" data-id="6aa9556aba91b6658beb95a9" playsinline webkit-playsinline preload="none"></video>
+          <button class="slide_play" type="button" aria-label="6-ishni ijro etish">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 5.5v13l11-6.5z"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="slide slide--wide" style="--ar:1.7778">
+        <div class="slide_inner">
+          <video class="slide_video" data-id="6aa9556ac1d3ddef93b503e1" playsinline webkit-playsinline preload="none"></video>
+          <button class="slide_play" type="button" aria-label="7-ishni ijro etish">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 5.5v13l11-6.5z"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="slide slide--wide" style="--ar:1.7778">
+        <div class="slide_inner">
+          <video class="slide_video" data-id="6aa9556b97a280a4b4432b29" playsinline webkit-playsinline preload="none"></video>
+          <button class="slide_play" type="button" aria-label="8-ishni ijro etish">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 5.5v13l11-6.5z"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="slide slide--tall" style="--ar:0.5625">
+        <div class="slide_inner">
+          <video class="slide_video" data-id="6aa953bcc1d3ddef93b4f8e6" playsinline webkit-playsinline preload="none"></video>
+          <button class="slide_play" type="button" aria-label="9-ishni ijro etish">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 5.5v13l11-6.5z"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="slide slide--tall" style="--ar:0.5625">
+        <div class="slide_inner">
+          <video class="slide_video" data-id="6aa953bcc1d3ddef93b4f8e9" playsinline webkit-playsinline preload="none"></video>
+          <button class="slide_play" type="button" aria-label="10-ishni ijro etish">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 5.5v13l11-6.5z"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="slide slide--tall" style="--ar:0.5625">
+        <div class="slide_inner">
+          <video class="slide_video" data-id="6aa953bcba91b6658beb8af8" playsinline webkit-playsinline preload="none"></video>
+          <button class="slide_play" type="button" aria-label="11-ishni ijro etish">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 5.5v13l11-6.5z"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="slide slide--tall" style="--ar:0.5625">
+        <div class="slide_inner">
+          <video class="slide_video" data-id="6aa953bcba91b6658beb8af6" playsinline webkit-playsinline preload="none"></video>
+          <button class="slide_play" type="button" aria-label="12-ishni ijro etish">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 5.5v13l11-6.5z"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="slide slide--tall" style="--ar:0.5625">
+        <div class="slide_inner">
+          <video class="slide_video" data-id="6aa953bcba91b6658beb8af7" playsinline webkit-playsinline preload="none"></video>
+          <button class="slide_play" type="button" aria-label="13-ishni ijro etish">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 5.5v13l11-6.5z"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="slide slide--tall" style="--ar:0.5625">
+        <div class="slide_inner">
+          <video class="slide_video" data-id="6aa953bcba91b6658beb8af9" playsinline webkit-playsinline preload="none"></video>
+          <button class="slide_play" type="button" aria-label="14-ishni ijro etish">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 5.5v13l11-6.5z"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="slide slide--tall" style="--ar:0.5625">
+        <div class="slide_inner">
+          <video class="slide_video" data-id="6aa9556ac1d3ddef93b503e0" playsinline webkit-playsinline preload="none"></video>
+          <button class="slide_play" type="button" aria-label="15-ishni ijro etish">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 5.5v13l11-6.5z"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="slide slide--tall" style="--ar:0.5625">
+        <div class="slide_inner">
+          <video class="slide_video" data-id="6aa9556ac1d3ddef93b503df" playsinline webkit-playsinline preload="none"></video>
+          <button class="slide_play" type="button" aria-label="16-ishni ijro etish">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 5.5v13l11-6.5z"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="slide slide--tall" style="--ar:0.5625">
+        <div class="slide_inner">
+          <video class="slide_video" data-id="6aa9556a97a280a4b4432b23" playsinline webkit-playsinline preload="none"></video>
+          <button class="slide_play" type="button" aria-label="17-ishni ijro etish">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 5.5v13l11-6.5z"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="slide slide--tall" style="--ar:0.5583">
+        <div class="slide_inner">
+          <video class="slide_video" data-id="6aa9556aba91b6658beb95a7" playsinline webkit-playsinline preload="none"></video>
+          <button class="slide_play" type="button" aria-label="18-ishni ijro etish">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 5.5v13l11-6.5z"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="slide slide--tall" style="--ar:0.5625">
+        <div class="slide_inner">
+          <video class="slide_video" data-id="6aa9556a97a280a4b4432b24" playsinline webkit-playsinline preload="none"></video>
+          <button class="slide_play" type="button" aria-label="19-ishni ijro etish">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 5.5v13l11-6.5z"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="slide slide--tall" style="--ar:0.5625">
+        <div class="slide_inner">
+          <video class="slide_video" data-id="6aa9556ac1d3ddef93b503e2" playsinline webkit-playsinline preload="none"></video>
+          <button class="slide_play" type="button" aria-label="20-ishni ijro etish">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 5.5v13l11-6.5z"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="slide slide--tall" style="--ar:0.5625">
+        <div class="slide_inner">
+          <video class="slide_video" data-id="6aa9556bba91b6658beb95ad" playsinline webkit-playsinline preload="none"></video>
+          <button class="slide_play" type="button" aria-label="21-ishni ijro etish">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 5.5v13l11-6.5z"/></svg>
+          </button>
+        </div>
       </div>
     </div>
+    <button class="slides_nav slides_nav--next" type="button" aria-label="Keyingi ish">
+      <svg viewBox="0 0 14 25" aria-hidden="true"><path d="M3 2l8 10.5L3 23"/></svg>
+    </button>
+  </div>
 
+  <div class="wrap">
     <div class="ctaWrap" style="margin-top:34px">
       <button class="cta" onclick="openModal('works')">MEN HAM SHUNDAY QILMOQCHIMAN <span class="arw">→</span></button>
       <div class="ctaNote">99 000 so'm · bir marta to'laysiz</div>
@@ -394,13 +650,31 @@ h3{font-size:clamp(19px,3vw,24px);letter-spacing:-.015em;line-height:1.2}
       <div style="margin-top:14px;font-size:14px;color:#7A7A82;font-weight:600">— Umar Creates o'quvchisi</div>
     </div>
 
-    <div class="g g3">
-      <!-- ⬇⬇ SHARH SCREENSHOTLARI: <img src="/reviews/1.jpg" alt=""> ⬇⬇ -->
-      <div class="card" style="padding:10px"><div class="ph sq">📱<br>Sharh screenshoti 1</div></div>
-      <div class="card" style="padding:10px"><div class="ph sq">📱<br>Sharh screenshoti 2</div></div>
-      <div class="card" style="padding:10px"><div class="ph sq">📱<br>Sharh screenshoti 3</div></div>
-    </div>
   </div>
+
+  <!-- Skrinshotlar /reviews/ da. --ar = eni/bo'yi; 1.3 dan kengi slide--wide. -->
+  <div class="carousel carousel--rev">
+    <div class="carousel_shade carousel_shade--l" aria-hidden="true"></div>
+    <div class="carousel_shade carousel_shade--r" aria-hidden="true"></div>
+    <button class="slides_nav slides_nav--prev" type="button" aria-label="Oldingi sharh">
+      <svg viewBox="0 0 14 25" aria-hidden="true"><path d="M11 2 3 12.5 11 23"/></svg>
+    </button>
+    <div class="slides">
+      <div class="slide slide--wide" style="--ar:2.449"><div class="slide_inner"><button class="rev_open" type="button" aria-label="1-sharhni kattalashtirish"><img src="/reviews/6.webp" width="720" height="294" loading="lazy" decoding="async" alt="O'quvchi sharhi: 4 ta darsdan keyin hammasini tushundim"></button></div></div>
+      <div class="slide slide--wide" style="--ar:1.4229"><div class="slide_inner"><button class="rev_open" type="button" aria-label="2-sharhni kattalashtirish"><img src="/reviews/7.webp" width="720" height="506" loading="lazy" decoding="async" alt="O'quvchi sharhi: darsliklarda juda sodda tushuntirgansiz"></button></div></div>
+      <div class="slide slide--wide" style="--ar:3"><div class="slide_inner"><button class="rev_open" type="button" aria-label="3-sharhni kattalashtirish"><img src="/reviews/8.webp" width="720" height="240" loading="lazy" decoding="async" alt="O'quvchi sharhi: darsdan o'rganganlarimni ishlatib qildim"></button></div></div>
+      <div class="slide slide--wide" style="--ar:1.6"><div class="slide_inner"><button class="rev_open" type="button" aria-label="4-sharhni kattalashtirish"><img src="/reviews/9.webp" width="720" height="450" loading="lazy" decoding="async" alt="O'quvchi sharhi: kursga 10 dan 100 beraman"></button></div></div>
+      <div class="slide slide--tall" style="--ar:.6406"><div class="slide_inner"><button class="rev_open" type="button" aria-label="5-sharhni kattalashtirish"><img src="/reviews/1.webp" width="720" height="1124" loading="lazy" decoding="async" alt="O'quvchi sharhi: kurs zo'r, 100$ lik kursda bunaqa darslar yo'q edi"></button></div></div>
+      <div class="slide slide--tall" style="--ar:1.0435"><div class="slide_inner"><button class="rev_open" type="button" aria-label="6-sharhni kattalashtirish"><img src="/reviews/2.webp" width="720" height="690" loading="lazy" decoding="async" alt="O'quvchi sharhi: 1,5 millionlik kursda natija yo'q edi"></button></div></div>
+      <div class="slide slide--tall" style="--ar:.4604"><div class="slide_inner"><button class="rev_open" type="button" aria-label="7-sharhni kattalashtirish"><img src="/reviews/3.webp" width="720" height="1564" loading="lazy" decoding="async" alt="O'quvchi sharhi: 99 000 bu darslik uchun juda arzon"></button></div></div>
+      <div class="slide slide--tall" style="--ar:.8824"><div class="slide_inner"><button class="rev_open" type="button" aria-label="8-sharhni kattalashtirish"><img src="/reviews/4.webp" width="720" height="816" loading="lazy" decoding="async" alt="O'quvchi sharhi: bu bilimlar 99 000 dan ancha qimmat turadi"></button></div></div>
+      <div class="slide slide--tall" style="--ar:.5271"><div class="slide_inner"><button class="rev_open" type="button" aria-label="9-sharhni kattalashtirish"><img src="/reviews/5.webp" width="720" height="1366" loading="lazy" decoding="async" alt="O'quvchi sharhi: hech ikkilanmasdan kursni sotib oldim"></button></div></div>
+    </div>
+    <button class="slides_nav slides_nav--next" type="button" aria-label="Keyingi sharh">
+      <svg viewBox="0 0 14 25" aria-hidden="true"><path d="M3 2l8 10.5L3 23"/></svg>
+    </button>
+  </div>
+  <p class="rev_hint">Suring · o'qish uchun rasmni bosing</p>
 </section>
 
 
@@ -530,8 +804,8 @@ h3{font-size:clamp(19px,3vw,24px);letter-spacing:-.015em;line-height:1.2}
   <div class="wrap">
     <div class="about">
       <div>
-        <!-- ⬇⬇ UMARNING REAL SURATI: <img src="/umar.jpg" alt="Umar" style="border-radius:20px"> ⬇⬇ -->
-        <div class="ph sq" style="border-radius:20px">📷<br>Umarning surati<br>(real, AI emas)</div>
+        <img src="/assets/umar.jpg" alt="Umar Creates" width="853" height="853" loading="lazy" decoding="async"
+             style="width:100%;height:auto;aspect-ratio:1;object-fit:cover;border-radius:20px">
       </div>
       <div>
         <div class="eyebrow">MUALLIF</div>
@@ -563,10 +837,13 @@ h3{font-size:clamp(19px,3vw,24px);letter-spacing:-.015em;line-height:1.2}
       <h2>KURS HAQIDA VIDEODA</h2>
       <p class="lead">Vaqtingiz bo'lsa — Umar kursni o'zi tanishtiradi</p>
     </div>
-    <div style="max-width:760px;margin:0 auto">
-      <!-- ⬇⬇ VSL: <video src="/vsl.mp4" controls poster="/vsl-poster.jpg"
-                        style="aspect-ratio:16/9;border-radius:20px;width:100%"></video> ⬇⬇ -->
-      <div class="ph wide" style="border-radius:20px">▶<br>VSL video<br>(preview rasm bilan, avtomatik o'ynamasin)</div>
+    <div class="vsl">
+      <video class="vsl_video" data-col="6a733d7b10058ad63da04059" data-id="6a809bdca1a122c6282a34a6" data-poster-w="1280"
+             playsinline webkit-playsinline preload="none"></video>
+      <button class="vsl_play" type="button" aria-label="Kurs haqidagi videoni ijro etish">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 5.5v13l11-6.5z"/></svg>
+      </button>
+      <span class="vsl_len">▶ 5:03</span>
     </div>
   </div>
 </section>
@@ -677,8 +954,7 @@ h3{font-size:clamp(19px,3vw,24px);letter-spacing:-.015em;line-height:1.2}
 
     <div style="margin-top:40px;padding-top:26px;border-top:1px solid var(--line)">
       <p style="font-size:14px;color:var(--gry2);margin-bottom:12px">Savol va takliflar uchun</p>
-      <!-- ⬇⬇ ADMIN USERNAME ni almashtiring ⬇⬇ -->
-      <a href="https://t.me/UMAR_ADMIN" target="_blank" rel="noopener"
+      <a href="https://t.me/umarcreaters_admin" target="_blank" rel="noopener"
          style="color:var(--yel);font-weight:700;text-decoration:none;font-size:16px">
         ✈️ Adminga Telegramdan yozish →
       </a>
@@ -747,6 +1023,13 @@ h3{font-size:clamp(19px,3vw,24px);letter-spacing:-.015em;line-height:1.2}
       </div>
     </div>
   </div>
+</div>
+
+
+<!-- ══════════ LIGHTBOX (sharh skrinshotlari) ══════════ -->
+<div class="lb" id="lb">
+  <button class="lb_x" type="button" aria-label="Yopish">×</button>
+  <img alt="">
 </div>
 
 
@@ -862,6 +1145,277 @@ function fbcFromUrl(){
   var p=new URLSearchParams(location.search).get('fbclid');
   return p?('fb.1.'+Date.now()+'.'+p):'';
 }
+
+/* ═══════════ CAROUSELS (works videos, review screenshots) ═══════════ */
+(function(){
+  var roots=document.querySelectorAll('.carousel');
+  for(var r=0;r<roots.length;r++) wire(roots[r]);
+
+  function wire(root){
+    var track=root.querySelector('.slides');
+    var prev=root.querySelector('.slides_nav--prev');
+    var next=root.querySelector('.slides_nav--next');
+    var slides=track.querySelectorAll('.slide');
+
+    function centeredIndex(){
+      var mid=track.getBoundingClientRect().left+track.clientWidth/2, best=0, bestD=Infinity;
+      for(var i=0;i<slides.length;i++){
+        var r=slides[i].getBoundingClientRect(), d=Math.abs(r.left+r.width/2-mid);
+        if(d<bestD){bestD=d;best=i}
+      }
+      return best;
+    }
+    function offsetTo(i){
+      var t=track.getBoundingClientRect(), s=slides[i].getBoundingClientRect();
+      return s.left+s.width/2-(t.left+t.width/2);
+    }
+    function goTo(i){
+      i=Math.max(0,Math.min(slides.length-1,i));
+      track.scrollBy({left:offsetTo(i),behavior:'smooth'});
+    }
+    var lastActive=-1;
+    function markActive(){
+      var a=centeredIndex();
+      if(a===lastActive)return;
+      // the card that just left the centre stops playing. Only that one: a side card tapped
+      // to play is still off-centre while it scrolls in and must not be paused on the way.
+      if(lastActive>=0){
+        var v=slides[lastActive].querySelector('video');
+        if(v&&!v.paused)v.pause();
+      }
+      for(var i=0;i<slides.length;i++) slides[i].classList.toggle('is-active',i===a);
+      lastActive=a;
+    }
+    // Runway: half the free space before the first card and after the last, so both can sit
+    // dead centre like any other. Cards differ in width, so it is measured rather than CSS.
+    // offsetWidth ignores the .88 scale on inactive cards; the track's own width never
+    // changes with its padding, so the ResizeObserver below cannot loop on this.
+    function runway(){
+      var w=track.clientWidth;
+      track.style.paddingLeft=Math.max(20,(w-slides[0].offsetWidth)/2)+'px';
+      track.style.paddingRight=Math.max(20,(w-slides[slides.length-1].offsetWidth)/2)+'px';
+    }
+    function sync(){
+      // 1px of slack: fractional scroll positions at some zoom levels never compare equal
+      var max=track.scrollWidth-track.clientWidth;
+      prev.disabled=track.scrollLeft<=1;
+      next.disabled=track.scrollLeft>=max-1;
+    }
+    prev.addEventListener('click',function(){goTo(centeredIndex()-1)});
+    next.addEventListener('click',function(){goTo(centeredIndex()+1)});
+
+    // Land on the 2nd card so the first glance already shows there is more either way.
+    // Wait until the track actually overflows, or there is nowhere to scroll yet.
+    var booted=false;
+    function boot(){
+      if(booted||slides.length<2||track.scrollWidth<=track.clientWidth+1)return;
+      track.scrollLeft+=offsetTo(1);
+      booted=true; sync(); markActive();
+    }
+
+    // Mouse drag. Touch already pans natively; snap is off while dragging or it fights the pointer.
+    var dragging=false, moved=false, startX=0, startScroll=0;
+    track.addEventListener('pointerdown',function(e){
+      if(e.pointerType!=='mouse'||e.button!==0)return;
+      dragging=true; moved=false; startX=e.clientX; startScroll=track.scrollLeft;
+    });
+    track.addEventListener('pointermove',function(e){
+      if(!dragging)return;
+      var dx=e.clientX-startX;
+      if(!moved){
+        if(Math.abs(dx)<=3)return;
+        // capture only once it is really a drag: capturing on pointerdown retargets the
+        // click to the track, and a plain click on a play button would never reach it
+        moved=true;
+        track.classList.add('is-dragging'); track.setPointerCapture(e.pointerId);
+      }
+      track.scrollLeft=startScroll-dx;
+    });
+    function release(e){
+      if(!dragging)return;
+      dragging=false; track.classList.remove('is-dragging');
+      if(track.hasPointerCapture(e.pointerId))track.releasePointerCapture(e.pointerId);
+    }
+    track.addEventListener('pointerup',release);
+    track.addEventListener('pointercancel',release);
+    // a drag that happens to end on a play button is not a click on it
+    track.addEventListener('click',function(e){
+      if(!moved)return;
+      moved=false; e.preventDefault(); e.stopPropagation();
+    },true);
+    track.addEventListener('dragstart',function(e){e.preventDefault()});
+
+    track.addEventListener('scroll',function(){sync();markActive()},{passive:true});
+    window.addEventListener('resize',function(){runway();sync()});
+    if(window.ResizeObserver) new ResizeObserver(function(){runway();boot();sync()}).observe(track);
+    runway(); boot(); sync(); markActive();
+  }
+})();
+
+/* ═══════════ VIDEOS (works carousel + course video) ═══════════ */
+// Click-to-play, and only one video on the page plays at a time. Streams over HLS so a
+// phone gets 360–540p instead of the 70–100 MB originals: iPhone plays HLS natively,
+// elsewhere hls.js is fetched once a video nears the viewport. If HLS can't run, the
+// original download.mp4 is the fallback.
+(function(){
+  var GUMLET='https://video.gumlet.io/';
+  var COLLECTION='6a9c52e5800014611e29414b'; // default; a video can name its own in data-col
+  var HLS_JS='https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.5.20/hls.light.min.js';
+  var videos=document.querySelectorAll('video[data-id]');
+  if(!videos.length)return;
+  // Native HLS only where MediaSource is missing (iPhone). Desktop Chrome answers "maybe"
+  // for HLS yet fails with MEDIA_ERR_SRC_NOT_SUPPORTED (measured on Chrome 151), so
+  // anything with MediaSource goes through hls.js.
+  var native=!!videos[0].canPlayType('application/vnd.apple.mpegurl')&&!window.MediaSource;
+  var hlsLib=null;
+
+  function base(v){
+    return GUMLET+(v.getAttribute('data-col')||COLLECTION)+'/'+v.getAttribute('data-id');
+  }
+
+  function loadHls(){
+    if(!hlsLib) hlsLib=new Promise(function(res,rej){
+      if(window.Hls)return res(window.Hls);
+      var s=document.createElement('script');
+      s.src=HLS_JS; s.async=true;
+      s.onload=function(){window.Hls?res(window.Hls):rej()};
+      s.onerror=rej;
+      document.head.appendChild(s);
+    });
+    return hlsLib;
+  }
+
+  // Gives the video a source. Synchronous whenever it can be (native HLS, or hls.js already
+  // loaded) so play() still runs inside the tap; returns a promise for the one slow case.
+  function attach(v){
+    if(v._ready)return v._ready;
+    var m3u8=base(v)+'/main.m3u8';
+    var t=0, resume=false;
+    function fallback(){
+      t=v.currentTime||0; resume=!v.paused||resume;
+      if(v._hls){v._hls.destroy();v._hls=null}
+      v.src=base(v)+'/download.mp4';
+      v.addEventListener('loadedmetadata',function(){try{if(t)v.currentTime=t}catch(_){}},{once:true});
+      if(resume)v.play().catch(function(){});
+    }
+    function useHls(Hls){
+      if(!Hls.isSupported())return fallback();
+      var h=new Hls({capLevelToPlayerSize:true});
+      v._hls=h;
+      h.on(Hls.Events.ERROR,function(ev,d){if(d.fatal){resume=true;fallback()}});
+      h.loadSource(m3u8);
+      h.attachMedia(v);
+    }
+    // native HLS that turns out not to work drops to the original file
+    v.addEventListener('error',function(){
+      if(v.currentSrc.indexOf('.m3u8')>0){resume=true;fallback()}
+    });
+    if(native) v.src=m3u8;
+    else if(window.Hls) useHls(window.Hls);
+    else { v._ready=loadHls().then(useHls,fallback); return v._ready; }
+    v._ready=Promise.resolve();
+    return v._ready;
+  }
+
+  function pauseOthers(v){
+    var all=document.querySelectorAll('video');
+    for(var j=0;j<all.length;j++) if(all[j]!==v&&!all[j].paused) all[j].pause();
+  }
+
+  function wire(v){
+    var box=v.parentNode;
+    var btn=box.querySelector('.slide_play,.vsl_play');
+    function run(){
+      var p=v.play();
+      if(p&&p.catch)p.catch(function(){btn.hidden=false});
+    }
+    function start(){
+      pauseOthers(v);
+      btn.hidden=true;
+      var ready=attach(v);
+      // play() inside the tap whenever the source is already set, as iOS requires
+      if(v._hls||v.getAttribute('src'))run();
+      else ready.then(run);
+    }
+    btn.addEventListener('click',function(e){
+      e.stopPropagation();
+      var slide=v.closest('.slide'), track=v.closest('.slides');
+      if(slide&&track&&!slide.classList.contains('is-active')){
+        // tapping a side card brings it to the centre first
+        var tb=track.getBoundingClientRect(), sb=slide.getBoundingClientRect();
+        track.scrollBy({left:sb.left+sb.width/2-(tb.left+tb.width/2),behavior:'smooth'});
+      }
+      start();
+    });
+    v.addEventListener('click',function(){
+      if(v.controls)return; // native controls handle their own clicks
+      if(v.paused)start(); else v.pause();
+    });
+    // however playback starts (our button, native controls, lock screen), the rest stop
+    v.addEventListener('play',function(){
+      pauseOthers(v);
+      v.controls=true; btn.hidden=true; box.classList.add('is-started');
+    });
+    v.addEventListener('pause',function(){if(!v.seeking)btn.hidden=false});
+    v.addEventListener('ended',function(){v.controls=false;btn.hidden=false});
+  }
+  for(var i=0;i<videos.length;i++) wire(videos[i]);
+
+  // Posters: 22 of them would cost ~450 KB before anyone scrolls there. Each group (a
+  // carousel track, or a standalone video) arms once it nears the viewport; inside a track
+  // only the cards within a screen of the visible ones get theirs.
+  function reveal(v){
+    if(v.poster)return;
+    var w=v.getAttribute('data-poster-w')||(v.closest('.slide--wide')?720:480);
+    v.poster=base(v)+'/thumbnail-1-0.png?w='+w+'&format=webp';
+  }
+  if(!window.IntersectionObserver){for(var k=0;k<videos.length;k++)reveal(videos[k]);return}
+
+  function watch(group){
+    var vids=group.tagName==='VIDEO'?[group]:group.querySelectorAll('video[data-id]');
+    var near=new IntersectionObserver(function(entries){
+      if(!entries[0].isIntersecting)return;
+      near.disconnect();
+      // fetch hls.js ahead of the first tap, so play() is not delayed past the gesture
+      if(!native)loadHls().catch(function(){});
+      if(group.tagName==='VIDEO'){reveal(group);return}
+      var cards=new IntersectionObserver(function(es){
+        es.forEach(function(en){if(en.isIntersecting){reveal(en.target);cards.unobserve(en.target)}});
+      },{root:group,rootMargin:'0px 100%'});
+      for(var k=0;k<vids.length;k++)cards.observe(vids[k]);
+    },{rootMargin:'800px 0px'});
+    near.observe(group);
+    // scrolling away from the works carousel pauses it. The course video keeps talking:
+    // people listen to it while they read the price.
+    if(group.tagName==='VIDEO')return;
+    new IntersectionObserver(function(entries){
+      if(entries[0].isIntersecting)return;
+      for(var k=0;k<vids.length;k++) if(!vids[k].paused) vids[k].pause();
+    }).observe(group);
+  }
+  var tracks=document.querySelectorAll('.slides');
+  for(var g=0;g<tracks.length;g++) if(tracks[g].querySelector('video[data-id]')) watch(tracks[g]);
+  for(var s=0;s<videos.length;s++) if(!videos[s].closest('.slides')) watch(videos[s]);
+})();
+
+/* ═══════════ LIGHTBOX (review screenshots) ═══════════ */
+(function(){
+  var lb=document.getElementById('lb'); if(!lb)return;
+  var big=lb.querySelector('img');
+  var opens=document.querySelectorAll('.rev_open');
+  function open(img){
+    big.src=img.currentSrc||img.src; big.alt=img.alt;
+    lb.classList.add('on'); lb.scrollTop=0;
+    document.body.style.overflow='hidden';
+  }
+  function close(){
+    lb.classList.remove('on'); big.removeAttribute('src');
+    document.body.style.overflow='';
+  }
+  for(var i=0;i<opens.length;i++) opens[i].addEventListener('click',function(){open(this.querySelector('img'))});
+  lb.addEventListener('click',close);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&lb.classList.contains('on'))close()});
+})();
 </script>
 
 </body>
