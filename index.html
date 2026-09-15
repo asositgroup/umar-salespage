@@ -213,7 +213,10 @@ h3{font-size:clamp(19px,3vw,24px);letter-spacing:-.015em;line-height:1.2}
   box-shadow:0 14px 44px rgba(255,199,44,.45);transition:transform .2s ease}
 .vsl_play:hover{transform:translate(-50%,-50%) scale(1.07)}
 .vsl_play[hidden]{display:none}
-.vsl_play svg{position:relative;width:38%;height:38%;fill:currentColor;margin-left:8%}
+/* the path already sits right of the viewBox centre so the triangle looks centred; no extra
+   offset. A same-colour round stroke softens its corners. */
+.vsl_play svg{position:relative;width:36%;height:36%;overflow:visible}
+.vsl_play svg path{fill:currentColor;stroke:currentColor;stroke-width:3;stroke-linejoin:round}
 /* two rings ripple out of the button, half a beat apart */
 .vsl_play::before,.vsl_play::after{content:'';position:absolute;inset:0;border-radius:50%;
   border:3px solid var(--yel);pointer-events:none;animation:vslRing 2.4s cubic-bezier(.2,.6,.35,1) infinite}
