@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>AI bilan professional video yasash — Umar Creates mini kurs</title>
+<meta name="description" content="Studiya, kamera va operatorsiz professional reklama roligi yasashni o'rganing. 15 ta amaliy dars + 3 ta bonus. 99 000 so'm, bir marta to'laysiz.">
+<meta property="og:title" content="AI bilan professional video yasash — Umar Creates">
+<meta property="og:description" content="Studiyasiz, kamerasiz, bir kunda. 15 ta amaliy dars + 3 ta bonus.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
+
+<!-- ═══════════════════════════════════════════════════════════
+     META PIXEL — PIXEL_ID ni o'zingiznikiga almashtiring
+     ═══════════════════════════════════════════════════════════ -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','PIXEL_ID');
+fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=PIXEL_ID&ev=PageView&noscript=1"/></noscript>
+
+<style>
+/* ═══════════ TOKENS ═══════════ */
+:root{
+  --blk:#0A0A0C; --blk2:#121216; --blk3:#1A1A20; --line:#26262E;
+  --wht:#FFFFFF; --off:#F6F6F4; --gry:#A2A2AE; --gry2:#6E6E7A;
+  --red:#E8192C; --red2:#FF2E42; --redDim:rgba(232,25,44,.12);
+  --yel:#FFC72C; --yel2:#FFD95C; --yelDim:rgba(255,199,44,.12);
+  --r:16px; --rl:24px;
+  --max:1140px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--blk);color:var(--wht);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  line-height:1.55;font-size:17px;overflow-x:hidden;
+  padding-bottom:84px;
+}
+img,video{max-width:100%;display:block}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+
+/* ═══════════ TYPE ═══════════ */
+h1,h2,h3{line-height:1.08;letter-spacing:-.025em;font-weight:900}
+h1{font-size:clamp(32px,7.4vw,62px)}
+h2{font-size:clamp(27px,5.2vw,44px);margin-bottom:14px}
+h3{font-size:clamp(19px,3vw,24px);letter-spacing:-.015em;line-height:1.2}
+.lead{font-size:clamp(16px,2.4vw,21px);color:var(--gry);line-height:1.5}
+.yel{color:var(--yel)}
+.red{color:var(--red2)}
+.sec{padding:clamp(52px,8vw,92px) 0}
+.sec.lite{background:var(--off);color:var(--blk)}
+.sec.lite .lead{color:#55555F}
+.sec.lite h2{color:var(--blk)}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;
+  font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--yel);margin-bottom:16px}
+.sec.lite .eyebrow{color:var(--red)}
+.center{text-align:center}
+.mb{margin-bottom:clamp(30px,5vw,52px)}
+
+/* ═══════════ URGENCY BAR ═══════════ */
+.ubar{position:sticky;top:0;z-index:60;background:var(--red);
+  padding:9px 20px;text-align:center;font-size:13.5px;font-weight:700;
+  letter-spacing:.01em;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
+.ubar b{font-variant-numeric:tabular-nums;font-size:15px;
+  background:rgba(0,0,0,.28);padding:2px 9px;border-radius:6px;letter-spacing:.03em}
+
+/* ═══════════ HERO ═══════════ */
+.hero{position:relative;padding:clamp(34px,6vw,64px) 0 clamp(40px,6vw,68px);overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(760px 480px at 76% -8%,rgba(232,25,44,.20),transparent 62%),
+             radial-gradient(680px 460px at 6% 100%,rgba(255,199,44,.10),transparent 60%);
+  pointer-events:none}
+.hero>*{position:relative;z-index:1}
+.brand{display:flex;align-items:center;gap:11px;margin-bottom:clamp(24px,4vw,38px)}
+.brand .dot{width:34px;height:34px;border-radius:10px;flex:none;
+  background:linear-gradient(135deg,var(--red),var(--yel));
+  display:flex;align-items:center;justify-content:center;font-weight:900;color:#fff;font-size:15px}
+.brand span{font-weight:800;letter-spacing:.03em;font-size:15px}
+.h1sub{margin:18px 0 0;max-width:660px;font-size:clamp(16px,2.6vw,20px);color:var(--gry);line-height:1.5}
+.h1sub b{color:var(--wht);font-weight:700}
+
+/* ═══════════ 3 STEPS ═══════════ */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:clamp(26px,4vw,36px) 0}
+.stp{background:var(--blk2);border:1px solid var(--line);border-radius:var(--r);
+  padding:16px 12px;text-align:center;position:relative}
+.stp .n{width:26px;height:26px;border-radius:50%;background:var(--yel);color:var(--blk);
+  font-weight:900;font-size:13px;display:flex;align-items:center;justify-content:center;
+  margin:0 auto 9px}
+.stp .t{font-weight:800;font-size:14.5px;letter-spacing:-.01em}
+.stp .d{font-size:12px;color:var(--gry2);margin-top:3px;line-height:1.3}
+.stp.on{border-color:var(--yel);background:var(--yelDim)}
+
+/* ═══════════ CTA ═══════════ */
+.cta{display:flex;align-items:center;justify-content:center;gap:11px;
+  width:100%;max-width:460px;padding:19px 26px;border:none;cursor:pointer;
+  background:linear-gradient(135deg,var(--yel),#FFB300);color:#12100A;
+  font-family:inherit;font-size:clamp(15px,2.6vw,18px);font-weight:900;letter-spacing:.01em;
+  border-radius:999px;text-decoration:none;
+  box-shadow:0 10px 30px rgba(255,199,44,.26);transition:transform .12s,box-shadow .12s}
+.cta:active{transform:translateY(1px);box-shadow:0 6px 18px rgba(255,199,44,.22)}
+.cta.red{background:linear-gradient(135deg,var(--red2),var(--red));color:#fff;
+  box-shadow:0 10px 30px rgba(232,25,44,.30)}
+.cta .arw{font-size:1.1em;line-height:1}
+.ctaWrap{display:flex;flex-direction:column;align-items:center;gap:11px}
+.ctaWrap.left{align-items:flex-start}
+.ctaNote{font-size:13.5px;color:var(--gry2);display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.sec.lite .ctaNote{color:#6E6E7A}
+
+/* ═══════════ PROOF STRIP ═══════════ */
+.proof{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:var(--rl);overflow:hidden;margin-top:clamp(28px,4vw,40px)}
+.proof div{background:var(--blk2);padding:18px 10px;text-align:center}
+.proof .v{font-size:clamp(19px,3.6vw,29px);font-weight:900;letter-spacing:-.03em;color:var(--yel)}
+.proof .l{font-size:11.5px;color:var(--gry2);margin-top:3px;line-height:1.25}
+
+/* ═══════════ CARDS / GRID ═══════════ */
+.g{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.card{background:var(--blk2);border:1px solid var(--line);border-radius:var(--rl);padding:22px}
+.sec.lite .card{background:#fff;border-color:#E4E4E0;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.card.hi{border-color:var(--yel);background:linear-gradient(160deg,var(--yelDim),transparent)}
+.sec.lite .card.hi{border-color:var(--yel);background:#FFFBEF}
+
+/* media placeholders */
+.ph{aspect-ratio:9/16;border-radius:14px;background:linear-gradient(150deg,#1E1E26,#141419);
+  border:1px dashed #35353F;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:7px;color:#5A5A66;font-size:12.5px;text-align:center;padding:14px;line-height:1.35}
+.sec.lite .ph{background:#EDEDE9;border-color:#D2D2CE;color:#8A8A92}
+.ph .ic{font-size:26px;opacity:.5}
+.ph.wide{aspect-ratio:16/9}
+.ph.sq{aspect-ratio:1}
+.workCap{margin-top:9px;font-size:13px;color:var(--gry2);display:flex;justify-content:space-between;gap:8px}
+.sec.lite .workCap{color:#7A7A82}
+
+/* ═══════════ AUDIENCE ═══════════ */
+.aud{display:flex;gap:14px;align-items:flex-start}
+.aud .ic{width:42px;height:42px;border-radius:11px;flex:none;background:var(--redDim);
+  border:1px solid rgba(232,25,44,.28);display:flex;align-items:center;justify-content:center;font-size:19px}
+.sec.lite .aud .ic{background:#FDE9EB;border-color:#F5C2C8}
+.aud .t{font-weight:800;font-size:17px;letter-spacing:-.01em;margin-bottom:3px}
+.aud .d{font-size:14.5px;color:var(--gry);line-height:1.42}
+.sec.lite .aud .d{color:#5F5F69}
+
+/* ═══════════ LESSON LIST ═══════════ */
+.les{display:flex;align-items:center;gap:13px;padding:14px 16px;border-radius:13px;
+  background:var(--blk2);border:1px solid var(--line)}
+.sec.lite .les{background:#fff;border-color:#E4E4E0}
+.les .n{font-weight:900;font-size:14px;color:var(--yel);min-width:26px;font-variant-numeric:tabular-nums}
+.sec.lite .les .n{color:var(--red)}
+.les .t{font-weight:700;font-size:15.5px;letter-spacing:-.01em;line-height:1.25}
+.les .tag{margin-left:auto;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--gry2);white-space:nowrap}
+
+/* ═══════════ BONUS ═══════════ */
+.bon{display:flex;gap:16px;align-items:flex-start;padding:20px;border-radius:var(--rl);
+  background:linear-gradient(150deg,rgba(255,199,44,.13),rgba(255,199,44,.03));
+  border:1px solid rgba(255,199,44,.34)}
+.bon .n{width:40px;height:40px;border-radius:11px;flex:none;background:var(--yel);color:var(--blk);
+  font-weight:900;font-size:17px;display:flex;align-items:center;justify-content:center}
+.bon .t{font-weight:800;font-size:17.5px;margin-bottom:4px;letter-spacing:-.01em}
+.bon .d{font-size:14.5px;color:var(--gry);line-height:1.45}
+
+/* ═══════════ PRICE ═══════════ */
+.price{max-width:520px;margin:0 auto;background:linear-gradient(165deg,#17171C,#0D0D11);
+  border:2px solid var(--yel);border-radius:28px;padding:clamp(28px,5vw,42px) clamp(22px,4vw,38px);
+  text-align:center;position:relative;overflow:hidden}
+.price::before{content:'';position:absolute;inset:-40% -10% auto;height:60%;
+  background:radial-gradient(closest-side,rgba(255,199,44,.16),transparent);pointer-events:none}
+.price>*{position:relative}
+.pOld{font-size:clamp(21px,3.6vw,27px);font-weight:800;color:#6E6E7A;
+  text-decoration:line-through;text-decoration-color:var(--red2);text-decoration-thickness:3px}
+.pNew{font-size:clamp(52px,12vw,84px);font-weight:900;letter-spacing:-.045em;line-height:.95;
+  color:var(--yel);margin:8px 0 2px}
+.pCur{font-size:clamp(15px,2.6vw,19px);font-weight:800;letter-spacing:.2em;color:var(--yel2)}
+.pList{text-align:left;margin:24px 0;display:flex;flex-direction:column;gap:11px}
+.pList li{list-style:none;display:flex;gap:11px;align-items:flex-start;font-size:15.5px;line-height:1.4}
+.pList .ck{color:var(--yel);font-weight:900;flex:none}
+.timer{display:flex;align-items:center;justify-content:center;gap:10px;margin:18px 0 4px;
+  padding:13px;border-radius:14px;background:var(--redDim);border:1px solid rgba(232,25,44,.34)}
+.timer .lbl{font-size:12.5px;color:#FF8A96;font-weight:700;letter-spacing:.04em}
+.timer .val{font-size:26px;font-weight:900;color:var(--red2);font-variant-numeric:tabular-nums;letter-spacing:.02em}
+
+/* ═══════════ ABOUT ═══════════ */
+.about{display:grid;grid-template-columns:280px 1fr;gap:clamp(22px,4vw,44px);align-items:center}
+
+/* ═══════════ FAQ ═══════════ */
+.faq{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--blk2)}
+.sec.lite .faq{background:#fff;border-color:#E4E4E0}
+.faq+.faq{margin-top:10px}
+.faq summary{padding:18px 20px;cursor:pointer;font-weight:700;font-size:16px;
+  display:flex;align-items:center;gap:14px;list-style:none;letter-spacing:-.01em}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:'+';margin-left:auto;font-size:24px;font-weight:400;color:var(--yel);
+  line-height:1;transition:transform .2s;flex:none}
+.sec.lite .faq summary::after{color:var(--red)}
+.faq[open] summary::after{transform:rotate(45deg)}
+.faq .ans{padding:0 20px 19px;font-size:15px;color:var(--gry);line-height:1.55}
+.sec.lite .faq .ans{color:#5F5F69}
+
+/* ═══════════ STICKY MOBILE CTA ═══════════ */
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:55;
+  background:rgba(10,10,12,.93);backdrop-filter:blur(14px);
+  border-top:1px solid var(--line);padding:11px 16px calc(11px + env(safe-area-inset-bottom));
+  display:flex;align-items:center;gap:13px}
+.sticky .info{flex:1;min-width:0}
+.sticky .p1{font-size:12px;color:var(--gry2);text-decoration:line-through;line-height:1.1}
+.sticky .p2{font-size:19px;font-weight:900;color:var(--yel);letter-spacing:-.02em;line-height:1.15}
+.sticky .cta{width:auto;flex:none;padding:14px 22px;font-size:14.5px;max-width:none}
+
+/* ═══════════ MODAL ═══════════ */
+.ovl{position:fixed;inset:0;z-index:100;background:rgba(6,6,8,.82);backdrop-filter:blur(6px);
+  display:none;align-items:center;justify-content:center;padding:18px}
+.ovl.on{display:flex}
+.modal{background:#fff;color:var(--blk);width:100%;max-width:430px;border-radius:24px;
+  padding:28px 24px 24px;position:relative;animation:pop .22s ease-out}
+@keyframes pop{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:none}}
+.modal .x{position:absolute;right:14px;top:14px;width:32px;height:32px;border:none;background:#F0F0EE;
+  border-radius:50%;font-size:19px;color:#77777F;cursor:pointer;line-height:1;font-family:inherit}
+.modal h3{font-size:24px;margin-bottom:8px;letter-spacing:-.02em}
+.modal .sub{font-size:14.5px;color:#5F5F69;line-height:1.45;margin-bottom:20px}
+.fld{margin-bottom:13px}
+.fld label{display:block;font-size:13px;font-weight:700;color:#3A3A44;margin-bottom:6px}
+.fld input{width:100%;padding:15px 16px;font-size:16px;font-family:inherit;
+  border:1.5px solid #DEDEDA;border-radius:13px;background:#FAFAF8;color:var(--blk);outline:none;
+  transition:border-color .15s}
+.fld input:focus{border-color:var(--red);background:#fff}
+.fld .err{font-size:12.5px;color:var(--red);margin-top:5px;display:none}
+.fld.bad input{border-color:var(--red)}
+.fld.bad .err{display:block}
+.phone{display:flex;align-items:center;border:1.5px solid #DEDEDA;border-radius:13px;
+  background:#FAFAF8;overflow:hidden;transition:border-color .15s}
+.phone:focus-within{border-color:var(--red);background:#fff}
+.phone .pre{padding:15px 4px 15px 16px;font-size:16px;font-weight:700;color:#3A3A44;flex:none}
+.phone input{border:none;background:transparent;padding-left:6px}
+.phone input:focus{background:transparent}
+.modal .cta{max-width:none;width:100%;background:linear-gradient(135deg,var(--red2),var(--red));color:#fff;
+  box-shadow:0 8px 22px rgba(232,25,44,.28);margin-top:6px}
+.modal .safe{margin-top:14px;font-size:12.5px;color:#77777F;text-align:center;line-height:1.45}
+
+/* success screen */
+.done{display:none;text-align:center}
+.done.on{display:block}
+.done .big{width:62px;height:62px;border-radius:50%;background:#E8F7EE;color:#1D9B5B;
+  display:flex;align-items:center;justify-content:center;font-size:31px;margin:0 auto 16px}
+.done h3{margin-bottom:8px}
+.done p{font-size:14.5px;color:#5F5F69;margin-bottom:20px;line-height:1.5}
+.done .cta{background:linear-gradient(135deg,#29A3E0,#1B84C4);color:#fff;box-shadow:0 8px 22px rgba(29,140,200,.3)}
+.copyRow{margin-top:14px;padding:12px;background:#F5F5F2;border-radius:12px;
+  font-size:12.5px;color:#5F5F69;word-break:break-all;line-height:1.4}
+.copyRow b{display:block;color:var(--blk);margin-bottom:4px;font-size:12px;letter-spacing:.04em;text-transform:uppercase}
+
+/* ═══════════ RESPONSIVE ═══════════ */
+@media(max-width:860px){
+  .about{grid-template-columns:1fr}
+  .g3{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:640px){
+  body{font-size:16px}
+  .g2,.g3{grid-template-columns:1fr}
+  .g.works{grid-template-columns:repeat(2,1fr)}
+  .proof{grid-template-columns:repeat(2,1fr)}
+  .steps{gap:7px}
+  .stp{padding:13px 7px}
+  .stp .t{font-size:12.5px}
+  .stp .d{display:none}
+  .cta{max-width:none}
+  .ctaWrap{align-items:stretch}
+  .les .tag{display:none}
+}
+@media(max-width:520px){.hide-sm{display:none}}
+</style>
+</head>
+<body>
+
+<!-- ══════════ URGENCY BAR ══════════ -->
+<div class="ubar">
+  <span>🔥 99 000 so'm narxi tugashiga</span>
+  <b id="barTimer">09:59:00</b>
+</div>
+
+<!-- ══════════ HERO ══════════ -->
+<header class="hero">
+  <div class="wrap">
+    <div class="brand">
+      <div class="dot">UC</div>
+      <span>UMAR CREATES</span>
+    </div>
+
+    <div class="eyebrow">MINI KURS · 15 TA AMALIY DARS</div>
+
+    <h1>AI BILAN PROFESSIONAL<br><span class="yel">REKLAMA ROLIGI</span> YASANG</h1>
+
+    <p class="h1sub">
+      Studiya, kamera, model va operator kerak emas.
+      <b>Bitta noutbuk va bir kun</b> — shu yetarli.
+    </p>
+
+    <div class="steps">
+      <div class="stp on">
+        <div class="n">1</div>
+        <div class="t">SAYT</div>
+        <div class="d">Ma'lumot qoldirasiz</div>
+      </div>
+      <div class="stp">
+        <div class="n">2</div>
+        <div class="t">BOT</div>
+        <div class="d">To'lov qilasiz</div>
+      </div>
+      <div class="stp">
+        <div class="n">3</div>
+        <div class="t">KURS</div>
+        <div class="d">Darslar ochiladi</div>
+      </div>
+    </div>
+
+    <div class="ctaWrap left">
+      <button class="cta" onclick="openModal('hero')">
+        MINI KURSNI SOTIB OLISH <span class="arw">→</span>
+      </button>
+      <div class="ctaNote">
+        <span>⚡ Butun jarayon 2 daqiqa</span>
+        <span class="hide-sm">·</span>
+        <span class="hide-sm">📞 Qo'ng'iroq qilmaymiz</span>
+      </div>
+    </div>
+
+    <div class="proof">
+      <div><div class="v">1 500+</div><div class="l">O'quvchi</div></div>
+      <div><div class="v">15</div><div class="l">Amaliy dars</div></div>
+      <div><div class="v">3</div><div class="l">Bonus</div></div>
+      <div><div class="v">∞</div><div class="l">Umrbod kirish</div></div>
+    </div>
+  </div>
+</header>
+
+
+<!-- ══════════ O'QUVCHILAR ISHLARI ══════════ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="center mb">
+      <div class="eyebrow">NATIJALAR</div>
+      <h2>O'QUVCHILAR QILGAN ISHLAR</h2>
+      <p class="lead">Bularning hammasi kursdan keyin — kamerasiz, studiyasiz</p>
+    </div>
+
+    <div class="g g3 works">
+      <!-- ⬇⬇ 1-ISH: videoni shu yerga qo'ying ⬇⬇
+           <video src="/works/1.mp4" autoplay muted loop playsinline
+                  style="aspect-ratio:9/16;border-radius:14px;object-fit:cover"></video> -->
+      <div>
+        <div class="ph"><div class="ic">▶</div>O'quvchi videosi 1<br>(9:16 · autoplay · muted · loop)</div>
+        <div class="workCap"><span>Chaqaloq reklama roligi</span><span>~40 daq</span></div>
+      </div>
+      <div>
+        <div class="ph"><div class="ic">▶</div>O'quvchi videosi 2</div>
+        <div class="workCap"><span>Mahsulot reklamasi</span><span>~30 daq</span></div>
+      </div>
+      <div>
+        <div class="ph"><div class="ic">▶</div>O'quvchi videosi 3</div>
+        <div class="workCap"><span>AI avatar</span><span>~20 daq</span></div>
+      </div>
+    </div>
+
+    <div class="ctaWrap" style="margin-top:34px">
+      <button class="cta" onclick="openModal('works')">MEN HAM SHUNDAY QILMOQCHIMAN <span class="arw">→</span></button>
+      <div class="ctaNote">99 000 so'm · bir marta to'laysiz</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════ SHARHLAR ══════════ -->
+<section class="sec lite">
+  <div class="wrap">
+    <div class="center mb">
+      <div class="eyebrow">SAMIMIY FIKRLAR</div>
+      <h2>O'QUVCHILAR NIMA DEYAPTI?</h2>
+    </div>
+
+    <div class="card hi" style="max-width:720px;margin:0 auto 18px;text-align:center;padding:30px 24px">
+      <div style="font-size:clamp(19px,3.4vw,27px);font-weight:800;letter-spacing:-.02em;line-height:1.3">
+        «Men oldin <span class="red">100$ lik kursda</span> o'qigandim,<br>
+        lekin bunaqa darslar yo'q edi»
+      </div>
+      <div style="margin-top:14px;font-size:14px;color:#7A7A82;font-weight:600">— Umar Creates o'quvchisi</div>
+    </div>
+
+    <div class="g g3">
+      <!-- ⬇⬇ SHARH SCREENSHOTLARI: <img src="/reviews/1.jpg" alt=""> ⬇⬇ -->
+      <div class="card" style="padding:10px"><div class="ph sq">📱<br>Sharh screenshoti 1</div></div>
+      <div class="card" style="padding:10px"><div class="ph sq">📱<br>Sharh screenshoti 2</div></div>
+      <div class="card" style="padding:10px"><div class="ph sq">📱<br>Sharh screenshoti 3</div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════ KIM UCHUN ══════════ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="center mb">
+      <div class="eyebrow">KIM UCHUN</div>
+      <h2>BU KURS SIZGA MOSMI?</h2>
+    </div>
+
+    <div class="g g2">
+      <div class="card"><div class="aud">
+        <div class="ic">💼</div>
+        <div><div class="t">Biznes egalari</div>
+        <div class="d">Mahsulotingiz reklamasini syomkasiz, o'z noutbukingizda yasaysiz</div></div>
+      </div></div>
+
+      <div class="card"><div class="aud">
+        <div class="ic">📱</div>
+        <div><div class="t">SMM va media mutaxassislar</div>
+        <div class="d">Mijozga sotadigan eng qimmat xizmatingiz bo'ladi</div></div>
+      </div></div>
+
+      <div class="card"><div class="aud">
+        <div class="ic">🎬</div>
+        <div><div class="t">Videograf va dizaynerlar</div>
+        <div class="d">Ortiqcha xarajatlarsiz ishingizni sifatli va tez qilasiz</div></div>
+      </div></div>
+
+      <div class="card"><div class="aud">
+        <div class="ic">👨‍👩‍👧</div>
+        <div><div class="t">Ota-onalar va qiziquvchilar</div>
+        <div class="d">Farzandingizni multfilm qahramoniga aylantirasiz</div></div>
+      </div></div>
+
+      <div class="card" style="grid-column:1/-1"><div class="aud">
+        <div class="ic">🚀</div>
+        <div><div class="t">Yangi boshlovchilar</div>
+        <div class="d">Nol tajribadan boshlab, birinchi ishingizni shu kursda yasaysiz. Texnik odam bo'lish shart emas.</div></div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════ KURS ICHIDA ══════════ -->
+<section class="sec lite">
+  <div class="wrap">
+    <div class="center mb">
+      <div class="eyebrow">DASTUR</div>
+      <h2>KURS ICHIDA NIMALAR BOR?</h2>
+      <p class="lead">15 ta videodars · jami ~2 soat · oldi-qochdi gaplar yo'q, faqat ish</p>
+    </div>
+
+    <div class="g g2">
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div class="les"><span class="n">01</span><span class="t">Kling 3.0 — AI video generatsiya</span><span class="tag">Video</span></div>
+        <div class="les"><span class="n">02</span><span class="t">GPT Image 2.0 — professional vizual</span><span class="tag">Foto</span></div>
+        <div class="les"><span class="n">03</span><span class="t">Seedance 2.0 — harakat va animatsiya</span><span class="tag">Video</span></div>
+        <div class="les"><span class="n">04</span><span class="t">CapCut — montaj va yakuniy ishlov</span><span class="tag">Montaj</span></div>
+        <div class="les"><span class="n">05</span><span class="t">Kling Elements — personaj izchilligi</span><span class="tag">Muhim</span></div>
+        <div class="les"><span class="n">06</span><span class="t">Tayyor prompt formulalari</span><span class="tag">Baza</span></div>
+        <div class="les"><span class="n">07</span><span class="t">Salbiy prompt shablonlari</span><span class="tag">Sir</span></div>
+        <div class="les"><span class="n">08</span><span class="t">Action video yasash</span><span class="tag">Video</span></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div class="les"><span class="n">09</span><span class="t">AI foto va video kombinatsiyasi</span><span class="tag">Aralash</span></div>
+        <div class="les"><span class="n">10</span><span class="t">Eski suratlarni tiklash</span><span class="tag">Foto</span></div>
+        <div class="les"><span class="n">11</span><span class="t">HeyGen — AI avatar yasash</span><span class="tag">Avatar</span></div>
+        <div class="les"><span class="n">12</span><span class="t">AI model yaratish</span><span class="tag">Avatar</span></div>
+        <div class="les"><span class="n">13</span><span class="t">Blog uchun kontent tizimi</span><span class="tag">Kontent</span></div>
+        <div class="les"><span class="n">14</span><span class="t">Reklama roligi: g'oyadan tayyorgacha</span><span class="tag">Amaliyot</span></div>
+        <div class="les"><span class="n">15</span><span class="t">Ishni mijozga taqdim etish</span><span class="tag">Amaliyot</span></div>
+      </div>
+    </div>
+
+    <div class="card hi" style="margin-top:16px;display:flex;gap:14px;align-items:center;flex-wrap:wrap">
+      <div style="font-size:26px">🔒</div>
+      <div style="flex:1;min-width:220px">
+        <div style="font-weight:800;font-size:17px;margin-bottom:3px">Salbiy prompt shablonlari</div>
+        <div style="font-size:14.5px;color:#5F5F69;line-height:1.4">Nima <b>yozmaslik</b> kerakligi — buni hech kim o'rgatmaydi, lekin eng ko'p vaqt aynan shunda yo'qoladi</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════ BONUSLAR ══════════ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="center mb">
+      <div class="eyebrow">QO'SHIMCHA</div>
+      <h2>+ 3 TA <span class="yel">BONUS</span></h2>
+      <p class="lead">Asosiy darslardan tashqari, qo'shimcha to'lovsiz</p>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:13px;max-width:760px;margin:0 auto">
+      <div class="bon">
+        <div class="n">1</div>
+        <div>
+          <div class="t">Promptlar to'plami</div>
+          <div class="d">3 oy sinab topilgan tayyor formulalar. Nusxa olasiz va ishlatasiz — ingliz tilini bilish shart emas.</div>
+        </div>
+      </div>
+      <div class="bon">
+        <div class="n">2</div>
+        <div>
+          <div class="t">AI orqali qanday daromad qilish</div>
+          <div class="d">Mijoz qayerdan topiladi, narx qanday belgilanadi, ishni qanday taqdim etish kerak.</div>
+        </div>
+      </div>
+      <div class="bon">
+        <div class="n">3</div>
+        <div>
+          <div class="t">Jamoaga qo'shilish imkoniyati</div>
+          <div class="d">Eng yaxshi ishlar ko'rsatgan o'quvchilar Umar Creates jamoasiga taklif qilinadi.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════ UMAR HAQIDA ══════════ -->
+<section class="sec lite">
+  <div class="wrap">
+    <div class="about">
+      <div>
+        <!-- ⬇⬇ UMARNING REAL SURATI: <img src="/umar.jpg" alt="Umar" style="border-radius:20px"> ⬇⬇ -->
+        <div class="ph sq" style="border-radius:20px">📷<br>Umarning surati<br>(real, AI emas)</div>
+      </div>
+      <div>
+        <div class="eyebrow">MUALLIF</div>
+        <h2 style="margin-bottom:16px">UMAR CREATES</h2>
+        <p class="lead" style="margin-bottom:18px">
+          AI bilan kreativ reels va reklama roliklari yasayman. Instagram'da
+          <b style="color:#111">48 000 dan ortiq obunachi</b>, kanalimdagi ishlarning
+          barchasi AI bilan — kamerasiz va studiyasiz qilingan.
+        </p>
+        <p class="lead" style="margin-bottom:22px">
+          Bu yo'lni o'tishga menda oylar ketdi: xato ustiga xato, keraksiz joyga to'langan pul.
+          Bu kursda men <b style="color:#111">faqat ishlaydigan qismini</b> qoldirdim —
+          nazariya yo'q, 15 ta darsda amaliyot.
+        </p>
+        <div class="ctaWrap left">
+          <button class="cta red" onclick="openModal('about')">KURSNI SOTIB OLISH <span class="arw">→</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════ VIDEO (VSL) ══════════ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="center mb">
+      <div class="eyebrow">BATAFSIL</div>
+      <h2>KURS HAQIDA VIDEODA</h2>
+      <p class="lead">Vaqtingiz bo'lsa — Umar kursni o'zi tanishtiradi</p>
+    </div>
+    <div style="max-width:760px;margin:0 auto">
+      <!-- ⬇⬇ VSL: <video src="/vsl.mp4" controls poster="/vsl-poster.jpg"
+                        style="aspect-ratio:16/9;border-radius:20px;width:100%"></video> ⬇⬇ -->
+      <div class="ph wide" style="border-radius:20px">▶<br>VSL video<br>(preview rasm bilan, avtomatik o'ynamasin)</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════ NARX ══════════ -->
+<section class="sec" id="narx" style="background:linear-gradient(180deg,#0A0A0C,#141014 60%,#0A0A0C)">
+  <div class="wrap">
+    <div class="center mb">
+      <div class="eyebrow">NARX</div>
+      <h2>KURS QANCHA TURADI?</h2>
+    </div>
+
+    <div class="price">
+      <div class="pOld">500 000 so'm</div>
+      <div class="pNew">99 000</div>
+      <div class="pCur">SO'M</div>
+
+      <div class="timer">
+        <div>
+          <div class="lbl">NARX OSHISHIGA QOLDI</div>
+          <div class="val" id="mainTimer">09:59:00</div>
+        </div>
+      </div>
+
+      <ul class="pList">
+        <li><span class="ck">✓</span><span>15 ta videodars — jami ~2 soat</span></li>
+        <li><span class="ck">✓</span><span>3 ta bonus</span></li>
+        <li><span class="ck">✓</span><span>Tayyor promptlar va shablonlar</span></li>
+        <li><span class="ck">✓</span><span>Barcha yangilanishlar — qo'shimcha to'lovsiz</span></li>
+        <li><span class="ck">✓</span><span><b>Bir marta to'laysiz — umrbod sizniki</b></span></li>
+      </ul>
+
+      <div class="ctaWrap">
+        <button class="cta" onclick="openModal('price')">HOZIROQ SOTIB OLISH <span class="arw">→</span></button>
+        <div class="ctaNote">💳 Payme · Click · Uzum · Paynet</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════ FAQ ══════════ -->
+<section class="sec lite">
+  <div class="wrap" style="max-width:800px">
+    <div class="center mb">
+      <div class="eyebrow">SAVOLLAR</div>
+      <h2>KO'P BERILADIGAN SAVOLLAR</h2>
+    </div>
+
+    <details class="faq" open>
+      <summary>Men texnik odam emasman. Uddalay olamanmi?</summary>
+      <div class="ans">Ha. Kurs noldan boshlanadi. Birinchi darsda hech narsa bilmaydigan odam ham 20 daqiqada birinchi kadrini chiqaradi. Barcha promptlar tayyor holda beriladi.</div>
+    </details>
+
+    <details class="faq">
+      <summary>Ingliz tilini bilmayman, muammo bo'ladimi?</summary>
+      <div class="ans">Yo'q. Barcha darslar o'zbek tilida. Promptlar tayyor — nusxa olib qo'yasiz, tarjima qilib o'tirmaysiz.</div>
+    </details>
+
+    <details class="faq">
+      <summary>Kursdan tashqari qo'shimcha xarajat bormi?</summary>
+      <div class="ans">Majburiy emas. Har bir vositaning bepul varianti ko'rsatilgan. Pullik obuna faqat xohlasangiz — ishni tezlashtirish uchun.</div>
+    </details>
+
+    <details class="faq">
+      <summary>To'lov qilsam, darslarni qachon va qanday olaman?</summary>
+      <div class="ans">Darhol. To'lovdan keyin Telegram bot sizga kirish havolasini avtomatik yuboradi. Butun jarayon 1–2 daqiqa vaqt oladi.</div>
+    </details>
+
+    <details class="faq">
+      <summary>Qanday texnika kerak?</summary>
+      <div class="ans">Telefon yoki noutbuk va internet. Kamera, mikrofon, studiya — hech biri kerak emas.</div>
+    </details>
+
+    <details class="faq">
+      <summary>Darslar qachongacha ochiq turadi?</summary>
+      <div class="ans">Umrbod. Bir marta to'laysiz, istagan vaqtda qaytib ko'rasiz. Yangi darslar qo'shilsa — qo'shimcha to'lovsiz olasiz.</div>
+    </details>
+
+    <details class="faq">
+      <summary>Telefon raqamim nima uchun kerak?</summary>
+      <div class="ans">Faqat kursga kirish havolasini yuborish uchun. Qo'ng'iroq qilmaymiz, reklama tashlamaymiz.</div>
+    </details>
+  </div>
+</section>
+
+
+<!-- ══════════ FINAL CTA ══════════ -->
+<section class="sec" style="background:linear-gradient(160deg,#1A0B0E,#0A0A0C 65%)">
+  <div class="wrap center">
+    <h2 style="max-width:720px;margin:0 auto 16px">
+      AI'NI SHUNCHAKI <span style="color:#6E6E7A">KUZATMANG.</span><br>
+      <span class="yel">UNDAN FOYDALANISHNI BOSHLANG.</span>
+    </h2>
+    <p class="lead" style="max-width:520px;margin:0 auto 28px">
+      Bugun boshlasangiz — ertaga birinchi videongiz tayyor bo'ladi.
+    </p>
+
+    <div class="ctaWrap">
+      <button class="cta" onclick="openModal('final')">MINI KURSNI SOTIB OLISH <span class="arw">→</span></button>
+      <div class="ctaNote">
+        <span style="text-decoration:line-through">500 000</span>
+        <b style="color:var(--yel);font-size:16px">99 000 so'm</b>
+        <span>· narx oshishiga <b id="finalTimer" style="color:var(--red2);font-variant-numeric:tabular-nums">09:59:00</b></span>
+      </div>
+    </div>
+
+    <div style="margin-top:40px;padding-top:26px;border-top:1px solid var(--line)">
+      <p style="font-size:14px;color:var(--gry2);margin-bottom:12px">Savol va takliflar uchun</p>
+      <!-- ⬇⬇ ADMIN USERNAME ni almashtiring ⬇⬇ -->
+      <a href="https://t.me/UMAR_ADMIN" target="_blank" rel="noopener"
+         style="color:var(--yel);font-weight:700;text-decoration:none;font-size:16px">
+        ✈️ Adminga Telegramdan yozish →
+      </a>
+      <p style="margin-top:26px;font-size:12.5px;color:#4A4A55">© 2026 Umar Creates</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════ STICKY CTA ══════════ -->
+<div class="sticky">
+  <div class="info">
+    <div class="p1">500 000 so'm</div>
+    <div class="p2">99 000 so'm</div>
+  </div>
+  <button class="cta" onclick="openModal('sticky')">SOTIB OLISH →</button>
+</div>
+
+
+<!-- ══════════ MODAL ══════════ -->
+<div class="ovl" id="ovl" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <button class="x" onclick="closeModal()" aria-label="Yopish">×</button>
+
+    <div id="formView">
+      <h3>Darslarga kirishni ochamiz</h3>
+      <p class="sub">Kirish havolasi shu raqamga yuboriladi.<br>Qo'ng'iroq qilmaymiz, reklama tashlamaymiz.</p>
+
+      <form id="leadForm" onsubmit="return submitLead(event)" novalidate>
+        <div class="fld" id="fName">
+          <label for="nm">Ismingiz</label>
+          <input id="nm" name="name" type="text" placeholder="Ismingiz" autocomplete="given-name" required>
+          <div class="err">Ismingizni yozing</div>
+        </div>
+
+        <div class="fld" id="fPhone">
+          <label for="ph">Telefon raqamingiz</label>
+          <div class="phone">
+            <span class="pre">🇺🇿 +998</span>
+            <input id="ph" name="phone" type="tel" inputmode="numeric" autocomplete="tel"
+                   placeholder="90 123 45 67" maxlength="12" required>
+          </div>
+          <div class="err">Raqam to'liq emas — 9 ta raqam kerak</div>
+        </div>
+
+        <button type="submit" class="cta" id="subBtn">
+          DARSLARIMNI OCHISH <span class="arw">→</span>
+        </button>
+      </form>
+
+      <div class="safe">Keyingi qadam — to'lov. 1 daqiqa vaqt oladi.</div>
+    </div>
+
+    <div id="doneView" class="done">
+      <div class="big">✓</div>
+      <h3>Ma'lumotlaringiz qabul qilindi</h3>
+      <p>Endi Telegram botga o'ting — to'lov va darslar o'sha yerda.</p>
+
+      <a class="cta" id="tgBtn" href="https://t.me/umar_creates_minikurs_tolov_bot" target="_blank" rel="noopener">
+        📩 TELEGRAMDA OCHISH <span class="arw">→</span>
+      </a>
+
+      <div class="copyRow">
+        <b>Telegram ochilmadimi?</b>
+        Havolani nusxa oling: t.me/umar_creates_minikurs_tolov_bot
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+/* ═══════════ CONFIG — dasturchi shu yerni sozlaydi ═══════════ */
+var CONFIG = {
+  BOT_USERNAME : 'umar_creates_minikurs_tolov_bot',
+  LEAD_ENDPOINT: '/api/lead',   // backend endpoint
+  TIMER_HOURS  : 9,
+  TIMER_MINUTES: 59
+};
+
+/* ═══════════ TIMER ═══════════ */
+(function(){
+  var KEY='uc_deadline', DUR=(CONFIG.TIMER_HOURS*3600)+(CONFIG.TIMER_MINUTES*60);
+  var end=0;
+  try{ end=parseInt(localStorage.getItem(KEY)||'0',10); }catch(e){}
+  if(!end||end<Date.now()){ end=Date.now()+DUR*1000; try{localStorage.setItem(KEY,end)}catch(e){} }
+  var els=['barTimer','mainTimer','finalTimer'].map(function(i){return document.getElementById(i)});
+  function pad(n){return n<10?'0'+n:''+n}
+  function tick(){
+    var s=Math.max(0,Math.floor((end-Date.now())/1000));
+    var t=pad(Math.floor(s/3600))+':'+pad(Math.floor(s%3600/60))+':'+pad(s%60);
+    els.forEach(function(e){if(e)e.textContent=t});
+  }
+  tick(); setInterval(tick,1000);
+})();
+
+/* ═══════════ MODAL ═══════════ */
+var lastSrc='';
+function openModal(src){
+  lastSrc=src||'';
+  document.getElementById('ovl').classList.add('on');
+  document.body.style.overflow='hidden';
+  setTimeout(function(){var n=document.getElementById('nm'); if(n&&window.innerWidth>760)n.focus();},60);
+  if(window.fbq) fbq('track','InitiateCheckout');
+}
+function closeModal(){
+  document.getElementById('ovl').classList.remove('on');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal()});
+
+/* ═══════════ PHONE MASK ═══════════ */
+(function(){
+  var ph=document.getElementById('ph');
+  ph.addEventListener('input',function(){
+    var d=this.value.replace(/\D/g,'').slice(0,9), o='';
+    if(d.length>0)o=d.slice(0,2);
+    if(d.length>2)o+=' '+d.slice(2,5);
+    if(d.length>5)o+=' '+d.slice(5,7);
+    if(d.length>7)o+=' '+d.slice(7,9);
+    this.value=o;
+    document.getElementById('fPhone').classList.remove('bad');
+  });
+  document.getElementById('nm').addEventListener('input',function(){
+    document.getElementById('fName').classList.remove('bad');
+  });
+})();
+
+/* ═══════════ SUBMIT ═══════════ */
+function submitLead(e){
+  e.preventDefault();
+  var nm=document.getElementById('nm').value.trim();
+  var raw=document.getElementById('ph').value.replace(/\D/g,'');
+  var ok=true;
+  if(nm.length<2){document.getElementById('fName').classList.add('bad');ok=false}
+  if(raw.length!==9){document.getElementById('fPhone').classList.add('bad');ok=false}
+  if(!ok)return false;
+
+  var btn=document.getElementById('subBtn');
+  btn.disabled=true; btn.innerHTML='YUKLANMOQDA...';
+
+  var payload={
+    name  : nm,
+    phone : '998'+raw,
+    source: lastSrc,
+    fbp   : getCookie('_fbp'),
+    fbc   : getCookie('_fbc')||fbcFromUrl(),
+    url   : location.href,
+    ts    : Date.now()
+  };
+
+  fetch(CONFIG.LEAD_ENDPOINT,{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(payload)
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(d){
+    if(d && d.lead_id){
+      document.getElementById('tgBtn').href =
+        'https://t.me/'+CONFIG.BOT_USERNAME+'?start='+d.lead_id;
+    }
+    showDone();
+  })
+  .catch(function(){ showDone(); });
+
+  return false;
+}
+
+function showDone(){
+  document.getElementById('formView').style.display='none';
+  document.getElementById('doneView').classList.add('on');
+  if(window.fbq) fbq('track','CompleteRegistration');
+}
+
+function getCookie(n){
+  var m=document.cookie.match('(^|;)\\s*'+n+'\\s*=\\s*([^;]+)');
+  return m?m.pop():'';
+}
+function fbcFromUrl(){
+  var p=new URLSearchParams(location.search).get('fbclid');
+  return p?('fb.1.'+Date.now()+'.'+p):'';
+}
+</script>
+
+</body>
+</html>
