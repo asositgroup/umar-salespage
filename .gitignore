@@ -1,0 +1,4 @@
+# browser-test artifacts and local tooling: never commit these to the public repo
+.playwright-mcp/
+.vercel/
+node_modules/
