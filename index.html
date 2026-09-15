@@ -1022,7 +1022,7 @@ h3{font-size:clamp(19px,3vw,24px);letter-spacing:-.015em;line-height:1.2}
 
       <div class="copyRow">
         <b>Telegram ochilmadimi?</b>
-        Havolani nusxa oling: t.me/umar_creates_minikurs_tolov_bot
+        Havolani nusxa oling: <span id="tgLink">t.me/umar_creates_minikurs_tolov_bot</span>
       </div>
     </div>
   </div>
@@ -1040,7 +1040,14 @@ h3{font-size:clamp(19px,3vw,24px);letter-spacing:-.015em;line-height:1.2}
 /* ═══════════ CONFIG — dasturchi shu yerni sozlaydi ═══════════ */
 var CONFIG = {
   BOT_USERNAME : 'umar_creates_minikurs_tolov_bot',
-  LEAD_ENDPOINT: '/api/lead',   // backend endpoint
+  // Klientni bot bazasiga qo'shadi va shaxsiy start-link qaytaradi: bot odamni shu link
+  // orqali taniydi va to'lov xabarini yuboradi. Ai Umar creates saytidagi bilan bir xil.
+  LEAD_ENDPOINT: 'https://app.webinar-payment.uz/tilda/add-client',
+  LEAD_TARIF   : '45',
+  LEAD_SECRET  : 'WC2Ow3dPNtNfh92',
+  LEAD_TIMEOUT : 4000,          // shundan keyin oddiy bot linki bilan davom etiladi
+  // Lidlar Google Sheet'ga ham yoziladi ("Lead" varag'i)
+  SHEET_URL    : 'https://script.google.com/macros/s/AKfycbwDuinfVChlNUHr2aybPaSHfsJIJq4ZPh-3yyQe2nkYmppGCjx9O6qQmXCE5ctJovs/exec',
   TIMER_HOURS  : 9,
   TIMER_MINUTES: 59
 };
@@ -1106,32 +1113,53 @@ function submitLead(e){
   var btn=document.getElementById('subBtn');
   btn.disabled=true; btn.innerHTML='YUKLANMOQDA...';
 
-  var payload={
-    name  : nm,
-    phone : '998'+raw,
-    source: lastSrc,
-    fbp   : getCookie('_fbp'),
-    fbc   : getCookie('_fbc')||fbcFromUrl(),
-    url   : location.href,
-    ts    : Date.now()
-  };
+  var phone='+998'+raw;
+  sendToSheet(nm, phone);
+
+  // Shaxsiy bot linkini so'raymiz. Har qanday nosozlik yoki LEAD_TIMEOUT dan keyin oddiy
+  // bot linki qoladi: odam hech qachon boshi berk ko'chada qolmasligi kerak.
+  var ctrl=window.AbortController?new AbortController():null;
+  var timer=setTimeout(function(){ if(ctrl)ctrl.abort(); },CONFIG.LEAD_TIMEOUT);
 
   fetch(CONFIG.LEAD_ENDPOINT,{
     method:'POST',
     headers:{'Content-Type':'application/json'},
-    body:JSON.stringify(payload)
+    body:JSON.stringify({
+      name      : nm,
+      phone     : phone,
+      TARIF     : CONFIG.LEAD_TARIF,
+      secret_key: CONFIG.LEAD_SECRET
+    }),
+    signal:ctrl?ctrl.signal:undefined,
+    keepalive:true
   })
   .then(function(r){ return r.json(); })
   .then(function(d){
-    if(d && d.lead_id){
-      document.getElementById('tgBtn').href =
-        'https://t.me/'+CONFIG.BOT_USERNAME+'?start='+d.lead_id;
-    }
-    showDone();
+    var bot=d&&d.bot;
+    if(d && d.status && bot && bot.available && bot.telegram_url) setBotLink(bot.telegram_url);
   })
-  .catch(function(){ showDone(); });
+  .catch(function(){})
+  .then(function(){ clearTimeout(timer); showDone(); });
 
   return false;
+}
+
+function setBotLink(url){
+  document.getElementById('tgBtn').href=url;
+  document.getElementById('tgLink').textContent=url.replace(/^https?:\/\//,'');
+}
+
+function sendToSheet(name, phone){
+  try{
+    var d=new Date(), p=function(n){return n<10?'0'+n:''+n};
+    var body=new FormData();
+    body.append('sheetName','Lead');
+    body.append('Ism',name);
+    body.append('Telefon raqam',phone);
+    body.append("Royhatdan o'tgan vaqti",
+      p(d.getDate())+'.'+p(d.getMonth()+1)+'.'+d.getFullYear()+' '+p(d.getHours())+':'+p(d.getMinutes()));
+    fetch(CONFIG.SHEET_URL,{method:'POST',body:body,mode:'no-cors',keepalive:true});
+  }catch(e){}
 }
 
 function showDone(){
