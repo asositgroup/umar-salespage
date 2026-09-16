@@ -1291,7 +1291,9 @@ function fbcFromUrl(){
 (function(){
   var GUMLET='https://video.gumlet.io/';
   var COLLECTION='6a9c52e5800014611e29414b'; // default; a video can name its own in data-col
-  var HLS_JS='https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.5.20/hls.light.min.js';
+  // the full build, not hls.light: Gumlet ships audio as a separate rendition
+  // (EXT-X-MEDIA TYPE=AUDIO), which light drops — the videos played silent
+  var HLS_JS='https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.5.20/hls.min.js';
   var videos=document.querySelectorAll('video[data-id]');
   if(!videos.length)return;
   // Native HLS only where MediaSource is missing (iPhone). Desktop Chrome answers "maybe"
