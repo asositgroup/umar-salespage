@@ -164,7 +164,7 @@
     toggle.textContent = expanded ? 'Yopish ↑' : "Barcha 15 ta darsni ko'rish ↓";
   });
 
-  var heroCta = document.querySelector('.hero .ctaBox');
+  var heroCta = document.getElementById('heroCta');
   var sticky = document.getElementById('sticky');
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(function (entries) {
