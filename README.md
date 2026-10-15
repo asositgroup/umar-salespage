@@ -1,153 +1,59 @@
-# Umar Creates — Sales Page
+# Umar Creates — mini kurs sayti
 
-Statik HTML sayt. Hech qanday build, framework yoki npm kerak emas.
+Oddiy HTML, CSS va JavaScript loyiha. Framework, `npm install` yoki build bosqichi talab qilinmaydi.
 
----
+| Manzil | Sahifa |
+| --- | --- |
+| `/` | Asosiy saytning avvalgi dizayni |
+| `/a/` | Taqdim etilgan redesign asosidagi yangi variant |
 
-## 1. Vercel'ga yuklash
+Ikkala sahifada kurs ma'lumotlari, narx, videolar, sharhlar, Telegram havolalari, ro'yxatdan o'tish va Pixel logikasi bir xil. `vercel.json` ichidagi `trailingSlash: true` sozlamasi `/a` manzilini `/a/` ko'rinishiga yo'naltiradi.
 
-**Variant A — eng oson (Drag & Drop)**
+## Fayllar
 
-1. [vercel.com/new](https://vercel.com/new) ochiladi
-2. Shu papka to'liq holda sudralib tashlanadi
-3. Deploy → tayyor
+| Fayl yoki papka | Vazifasi |
+| --- | --- |
+| `index.html` | Asosiy sahifa va uning ichki CSS uslublari |
+| `a/index.html` | Redesign sahifa; birinchi ekran uchun critical CSS shu faylda |
+| `a/css/main.css` | Redesign sahifaning qolgan, alohida yuklanadigan CSS uslublari |
+| `js/main.js` | Umumiy forma, taymer, Telegram, Sheets, video va sharhlarni ochish logikasi |
+| `js/tracking.js` | Ikkala sahifa ishlatadigan mavjud Meta Pixel |
+| `js/variant-a.js` | Redesign ko'rinishi: darslarni yoyish va pastki CTA panelini ko'rsatish |
+| `assets/`, `reviews/`, `works/` | Loyihaning mavjud media fayllari; yangi variant ham shu manbalardan foydalanadi |
+| `vercel.json` | URL, kesh va HTTP sarlavhalari sozlamalari |
 
-**Variant B — GitHub orqali**
+Videolar mavjud Gumlet manbalaridan yuklanadi. HLS ijrosi uchun kerak bo'lganda `hls.js` yuklanadi; sharh rasmlari, muallif surati va ommaviy oferta loyiha ichidagi umumiy fayllardan olinadi.
 
-```bash
-git init
-git add .
-git commit -m "Umar Creates sales page"
-git remote add origin <repo-url>
-git push -u origin main
-```
-Keyin Vercel'da repo ulanadi. Framework Preset: **Other**. Build command yo'q.
+## Ro'yxatdan o'tish
 
-**Variant C — CLI**
+Xarid tugmalari ism va telefon formasini ochadi. Ism kamida ikki belgidan, telefon esa `+998` dan keyin to'qqiz raqamdan iborat bo'lishi kerak.
 
-```bash
-npm i -g vercel
-vercel --prod
-```
+To'g'ri to'ldirilgan forma `js/main.js` dagi mavjud bot backendiga yuboriladi. Parallel ravishda ism, telefon va vaqt mavjud Google Sheets integratsiyasining `Lead` varag'iga yuboriladi. Sheets so'rovi `no-cors` orqali ketgani uchun sahifa javobdan yozuv saqlanganini tasdiqlay olmaydi.
 
----
+Backend muvaffaqiyatli javob bersa, Telegram tugmasiga foydalanuvchining shaxsiy bot havolasi o'rnatiladi. Xato yuz bersa yoki so'rov to'rt soniyada yakunlanmasa, oddiy bot havolasi ko'rsatiladi. Telegram foydalanuvchi tugmani bosganda ochiladi; avtomatik yo'naltirish yo'q.
 
-## 2. Sozlash — 4 ta majburiy qadam
+Mavjud Pixel sahifa ochilganda `PageView`, xarid tugmasi bosilganda `InitiateCheckout`, forma yakuniy ekraniga o'tganda `CompleteRegistration` hodisalarini yuboradi. Ikkala variant umumiy skriptlardan foydalanadi.
 
-### 2.1 Meta Pixel
+## Mahalliy ishga tushirish
 
-`index.html` faylida **2 joyda** `PIXEL_ID` yozilgan. Ikkalasini ham real ID ga almashtiring:
+Loyiha papkasida mahalliy `tools/` mavjud bo'lsa:
 
-```js
-fbq('init','PIXEL_ID');   // ← bu yerda
-```
-```html
-src="https://www.facebook.com/tr?id=PIXEL_ID&ev=PageView&noscript=1"   <!-- va bu yerda -->
+```sh
+node tools/serve.mjs 5179
 ```
 
-### 2.2 Telegram admin
+Yangi klonda `tools/` bo'lmasa, Python bilan:
 
-Final CTA blokida:
-
-```html
-<a href="https://t.me/UMAR_ADMIN" ...>
-```
-`UMAR_ADMIN` → real admin username.
-
-### 2.3 Backend endpoint
-
-`<script>` ichidagi CONFIG blokida:
-
-```js
-var CONFIG = {
-  BOT_USERNAME : 'umar_creates_minikurs_tolov_bot',
-  LEAD_ENDPOINT: '/api/lead',
-  TIMER_HOURS  : 9,
-  TIMER_MINUTES: 59
-};
+```sh
+python -m http.server 5179
 ```
 
-Forma shu endpointga **POST** yuboradi:
+Brauzerda `http://localhost:5179/` va `http://localhost:5179/a/` manzillarini oching.
 
-```json
-{
-  "name":   "Shaxbozbek",
-  "phone":  "998901234567",
-  "source": "hero",
-  "fbp":    "fb.1.1755600000.123456789",
-  "fbc":    "fb.1.1755600000.IwAR...",
-  "url":    "https://...",
-  "ts":     1755600000000
-}
+Mahalliy tenglik tekshiruvi mavjud bo'lsa:
+
+```sh
+node tools/verify-variant.mjs
 ```
 
-Backend **shunday javob qaytarishi kerak:**
-
-```json
-{ "lead_id": "abc123" }
-```
-
-`lead_id` kelgach, sayt Telegram tugmasini avtomatik shunday qiladi:
-
-```
-https://t.me/umar_creates_minikurs_tolov_bot?start=abc123
-```
-
-> **Bu eng muhim qism.** Bot `/start abc123` ni olib, bazadan ism va telefonni topadi va foydalanuvchidan **hech narsa so'ramaydi** — to'g'ridan-to'g'ri to'lov tugmalarini beradi.
->
-> Agar backend javob bermasa yoki xato bersa, sayt baribir Telegram tugmasini ko'rsatadi (`lead_id` siz). Ya'ni sayt hech qachon "sinib" qolmaydi.
-
-### 2.4 Media fayllar
-
-Hozir joylarda placeholder turibdi. Har birining yonida HTML izoh bor — o'sha izohdagi kodga almashtiring.
-
-| Nima | Qayerda | Format |
-|---|---|---|
-| 3 ta o'quvchi videosi | «O'QUVCHILAR QILGAN ISHLAR» | 9:16 mp4, `autoplay muted loop playsinline` |
-| 3 ta sharh screenshoti | «O'QUVCHILAR NIMA DEYAPTI?» | kvadrat jpg/png |
-| Umarning surati | «MUALLIF» | kvadrat jpg, **real surat** |
-| VSL video | «KURS HAQIDA VIDEODA» | 16:9 mp4 + poster rasm |
-
-Fayllarni `/works/` va `/reviews/` papkalariga qo'ying.
-
-**Muhim:** videolar siqilgan bo'lsin (har biri 2–3 MB dan oshmasin). Sayt tezligi konversiyaga to'g'ridan-to'g'ri ta'sir qiladi.
-
----
-
-## 3. Deploydan keyin tekshirish
-
-Quyidagilarning **har birida** o'zingiz sinab ko'ring:
-
-- [ ] **Instagram ilovasi ichidan** havola ochiladimi → forma → Telegram tugmasi ishlaydimi
-- [ ] **Facebook ilovasi ichidan** — xuddi shunday
-- [ ] iPhone Safari
-- [ ] Android Chrome
-- [ ] Telefonda forma maydonida **raqam klaviaturasi** ochiladimi
-- [ ] Events Manager → Test Events da `PageView`, `InitiateCheckout`, `CompleteRegistration` ko'rinadimi
-- [ ] Sahifa **3 soniyadan tez** yuklanadimi (PageSpeed Insights)
-
-> Instagram/Facebook **ichki brauzeri** — eng muhim tekshiruv. Shu sababli saytda avtomatik redirect yo'q, faqat tugma: ichki brauzerlarda avtomatik o'tish bloklanadi, foydalanuvchining o'z bosishi esa ishlaydi.
-
----
-
-## 4. Texnik ma'lumot
-
-- Tashqi kutubxona **yo'q** — faqat Meta Pixel
-- Shriftlar: tizim shriftlari (tashqi so'rov yo'q, tez yuklanadi)
-- Taymer `localStorage` da saqlanadi (09:59:00, har foydalanuvchi uchun alohida)
-- Mobil uchun sticky pastki CTA
-- `prefers-reduced-motion` va `env(safe-area-inset-bottom)` hisobga olingan
-- Butun sayt bitta `index.html` faylida
-
----
-
-## 5. Papka tuzilishi
-
-```
-umar-salespage/
-├── index.html        ← butun sayt
-├── vercel.json       ← cache va header sozlamalari
-├── works/            ← o'quvchi videolari
-├── reviews/          ← sharh screenshotlari
-└── README.md
-```
+Bu tekshiruv umumiy skriptlar, forma validatsiyasi, so'rov maydonlari, Telegram havolalari, xato va timeout holatlari, Pixel hodisalari hamda media tengligini tekshiradi. Tarmoq so'rovlari taqlid qilinadi: haqiqiy lid yoki Pixel hodisasi yuborilmaydi. `tools/` mahalliy yordamchi papka bo'lib, Git tomonidan e'tiborga olinmaydi.

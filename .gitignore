@@ -2,3 +2,6 @@
 .playwright-mcp/
 .vercel/
 node_modules/
+tools/
+PROJECT.md
+AGENTS.md
