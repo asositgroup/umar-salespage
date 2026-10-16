@@ -328,7 +328,7 @@ src="https://www.facebook.com/tr?id=2151163585812110&ev=PageView&noscript=1" alt
 </div>
 
 <div class="ovl" id="ovl" onclick="if(event.target===this)closeModal()">
-  <div class="md" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="md" id="checkoutCard" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <button class="x" onclick="closeModal()" aria-label="Yopish">×</button>
 
     <div id="formView">
@@ -365,26 +365,22 @@ src="https://www.facebook.com/tr?id=2151163585812110&ev=PageView&noscript=1" alt
       </div>
     </div>
 
-    <div id="doneView" class="done">
-      <div class="big">✓</div>
-      <h3>Ma'lumotlaringiz qabul qilindi</h3>
-      <p>Endi Telegram botga o'ting — to'lov va darslar o'sha yerda.</p>
-
-      <a class="cta" id="tgBtn" href="https://t.me/umar_creates_minikurs_tolov_bot" target="_blank" rel="noopener">
-        📩 TELEGRAMDA OCHISH <span class="arw">→</span>
-      </a>
-
-      <div class="copy">
-        <b>Telegram ochilmadimi?</b>
-        Havolani nusxa oling: <span id="tgLink">t.me/umar_creates_minikurs_tolov_bot</span>
-      </div>
+  </div>
+  <div class="redirectView" id="redirectView" role="dialog" aria-modal="true" aria-labelledby="redirectStatus" hidden>
+    <span class="redirectSpinner" aria-hidden="true"></span>
+    <p id="redirectStatus" role="status" aria-live="polite" tabindex="-1">Telegramga o'tilmoqda...</p>
+    <div class="redirectFallback" id="redirectFallback" hidden>
+      <p>Avtomatik ochilmasa:</p>
+      <a id="redirectLink" href="https://t.me/umar_creates_minikurs_tolov_bot">Telegramni ochish →</a>
     </div>
+    <button class="redirectClose" type="button" onclick="closeModal()">Yopish</button>
   </div>
 </div>
 
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="O'quvchi sharhi"><button class="lb_x" type="button" aria-label="Yopish">×</button><img alt="" loading="lazy" decoding="async"></div>
 
 <script src="../js/main.js" defer></script>
+<script src="../js/checkout-a.js" defer></script>
 <script src="../js/variant-a.js" defer></script>
 </body>
 </html>
